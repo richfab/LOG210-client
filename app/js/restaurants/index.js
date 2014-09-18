@@ -9,6 +9,7 @@ angular.module('myApp.restaurants', ['ngRoute'])
   });
 }])
 
-.controller('RestaurantListCtrl', [function() {
-
+.controller('RestaurantListCtrl', ['$scope',
+    function($scope) {
+        $scope.restaurants = {value:'coucou'};
 }]);
