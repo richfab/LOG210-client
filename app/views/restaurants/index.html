@@ -1,2 +1,27 @@
-<p>This is the partial for list restaurants.</p>
+<h3>Restaurants</h3>
+<table class="table">
+    
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Téléphone</th>
+            <th>Addresse</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr ng-repeat="restaurant in restaurants">
+            <td>{{$index + 1}}</td>
+            <td>{{restaurant.name}}</td>
+            <td>{{restaurant.phone}}</td>
+            <td>{{restaurant.address}}<br/>
+                {{restaurant.city}} {{restaurant.zip}}<br/>
+                {{restaurant.country}}
+            </td>
+        </tr>
+    </tbody>
+        
+</table>
+{{restaurant | json}}
 {{restaurants | json}}
