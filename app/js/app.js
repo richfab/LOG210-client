@@ -1,18 +1,22 @@
+/*global myApp, angular*/
+/*jslint node: true */
+
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
-    'ngRoute',
-    'restangular',
-    'ui.bootstrap',
-    'myApp.restaurants'
-]).
-        config(function($routeProvider, RestangularProvider) {
-            $routeProvider.otherwise({redirectTo: '/'});
-    
-    RestangularProvider.setBaseUrl('http://localhost:5000');
-})
-        .run(['$rootScope',
-    function($rootScope) {
-        $rootScope.currentMenu = 'home';
-    }]);
+var myApp = angular.module('myApp', [
+	'ngRoute',
+	'restangular',
+	'ui.bootstrap'
+]);
+
+// Configuration of Restangular
+myApp.config(function (RestangularProvider) {
+	RestangularProvider.setBaseUrl('http://localhost:5000');
+});
+
+// Run when application is launched
+myApp.run(['$rootScope',
+	function ($rootScope) {
+		$rootScope.currentMenu = 'home';
+	}]);

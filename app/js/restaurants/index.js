@@ -1,41 +1,36 @@
+/*global myApp*/
+/*jslint node: true */
+
 'use strict';
 
-angular.module('myApp.restaurants', ['ngRoute'])
+myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '$modal',
+	function ($scope, $rootScope, Restangular, $modal) {
 
-        .config(['$routeProvider', function($routeProvider, RestangularProvider) {
-                $routeProvider.when('/restaurants', {
-                    templateUrl: 'views/restaurants/index.html',
-            controller: 'RestaurantListCtrl'
-        });
-    }])
+		$rootScope.currentMenu = 'restaurants';
 
-        .controller('RestaurantListCtrl', ['$scope','$rootScope','Restangular','$modal',
-    function($scope, $rootScope, Restangular, $modal) {
-        
-        $rootScope.currentMenu = 'restaurants';
-        
-        Restangular.all("restaurants").getList().then(function(data){
-            $scope.restaurants = data;
-        }, function(){
-            console.log('erreur');
-        });
-        
-        Restangular.one("restaurants",1).get().then(function(data){
-            $scope.restaurant = data;
-        }, function(){
-            console.log('erreur');
-        });
-        
-        $scope.addRestaurant = function(){
-            var modalInstance = $modal.open({
-                templateUrl: 'views/restaurants/add.html',
-                controller: 'RestaurantAddCtrl',
-            });
-            
-            modalInstance.result.then(function () {
-                
-            }, function () {
-                
-            });
-        };
-    }]);
+		Restangular.all("restaurants").getList().then(function (data) {
+			$scope.restaurants = data;
+		}, function () {
+
+		});
+
+		Restangular.one("restaurants", 1).get().then(function (data) {
+			$scope.restaurant = data;
+		}, function () {
+
+		});
+
+		$scope.addRestaurant = function () {
+
+			var modalInstance = $modal.open({
+				templateUrl: 'views/restaurants/add.html',
+				controller: 'RestaurantAddCtrl'
+			});
+
+			modalInstance.result.then(function () {
+
+			}, function () {
+
+			});
+		};
+	}]);

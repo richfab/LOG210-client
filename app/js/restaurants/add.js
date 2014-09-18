@@ -1,12 +1,13 @@
+/*global myApp*/
+/*jslint node: true */
+
 'use strict';
 
-angular.module('myApp.restaurants')
+myApp.controller('RestaurantAddCtrl', ['$scope', '$rootScope', 'Restangular',
+	function ($scope, $rootScope, Restangular) {
 
-.controller('RestaurantAddCtrl', ['$scope','$rootScope','$modalInstance','Restangular',
-    function($scope, $rootScope, $modalInstance, Restangular) {
-        
-//        $scope.save = function(){
-//            
-//        };
-        
-}]);
+		$scope.save = function () {
+
+		};
+
+	}]);
