@@ -2,10 +2,16 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
-  'ngRoute',
-  'myApp.restaurants',
-  'myApp.version'
+    'ngRoute',
+    'restangular',
+    'myApp.restaurants'
 ]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/restaurants'});
-}]);
+        config(function($routeProvider, RestangularProvider) {
+            $routeProvider.otherwise({redirectTo: '/'});
+    
+    RestangularProvider.setBaseUrl('http://localhost:5000');
+})
+        .run(['$rootScope',
+    function($rootScope) {
+        $rootScope.currentMenu = 'home';
+    }]);
