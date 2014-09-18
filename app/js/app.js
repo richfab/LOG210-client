@@ -4,6 +4,7 @@
 angular.module('myApp', [
     'ngRoute',
     'restangular',
+    'ui.bootstrap',
     'myApp.restaurants'
 ]).
         config(function($routeProvider, RestangularProvider) {

@@ -2,15 +2,15 @@
 
 angular.module('myApp.restaurants', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider, RestangularProvider) {
-    $routeProvider.when('/restaurants', {
-        templateUrl: 'views/restaurants/index.html',
-        controller: 'RestaurantListCtrl'
-  });
-}])
+        .config(['$routeProvider', function($routeProvider, RestangularProvider) {
+                $routeProvider.when('/restaurants', {
+                    templateUrl: 'views/restaurants/index.html',
+            controller: 'RestaurantListCtrl'
+        });
+    }])
 
-.controller('RestaurantListCtrl', ['$scope','$rootScope','Restangular',
-    function($scope, $rootScope, Restangular) {
+        .controller('RestaurantListCtrl', ['$scope','$rootScope','Restangular','$modal',
+    function($scope, $rootScope, Restangular, $modal) {
         
         $rootScope.currentMenu = 'restaurants';
         
@@ -26,8 +26,16 @@ angular.module('myApp.restaurants', ['ngRoute'])
             console.log('erreur');
         });
         
-//        $scope.restaurants = [
-//            { "id": 1, "name": "Subway", "phone": "5144239876", "address": "rue de Sherbrook", "zip": "H2S6H4", "city": "Montreal", "country": "Canada" },
-//            { "id": 1, "name": "MacDonalds", "phone": "5144444876", "address": "rue de Normanville", "zip": "B236H4", "city": "Quebec", "country": "Canada" }
-//        ];
-}]);
+        $scope.addRestaurant = function(){
+            var modalInstance = $modal.open({
+                templateUrl: 'views/restaurants/add.html',
+                controller: 'RestaurantAddCtrl',
+            });
+            
+            modalInstance.result.then(function () {
+                
+            }, function () {
+                
+            });
+        };
+    }]);
