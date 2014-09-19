@@ -8,6 +8,14 @@ myApp.controller('RestaurantEditCtrl', ['$scope', '$modalInstance', 'Restangular
 
 		$scope.restaurant = restaurant;
 
+		// Get restaurateurs
+        Restangular.all('restaurateurs').getList().then(function (result) {
+			$scope.restaurateurs = result;
+        }, function (result) {
+			// Add a data alert to show error message
+            //$scope.dataAlert = result;
+        });
+
 		$scope.edit = function () {
             Restangular.one('restaurants', $scope.restaurant.id).put($scope.restaurant).then(function (result) {
                 $modalInstance.close(result);

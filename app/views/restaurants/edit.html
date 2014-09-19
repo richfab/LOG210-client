@@ -46,6 +46,15 @@
 				<input class="form-control" type="text" ng-model="restaurant.country">
 			</div>
 		</div>
+
+		<div class="control-group">
+			<label class="control-label">Restaurateur</label>
+			<div class="controls">
+				<select class="form-control" type="text" name="firstname" ng-model="restaurant.restaurateur_id" ng-options="r.id as r.lastname + ' ' + r.firstname for r in restaurateurs">
+					<option value="">--</option>
+				</select>
+			</div>
+		</div>
 	</div>
 
 	<div class="modal-footer">
