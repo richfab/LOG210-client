@@ -1,0 +1,29 @@
+<div class="container">
+
+	<h3>Restaurateurs</h3>
+
+	<button class="btn btn-default" ng-click="add()">Ajouter</button>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="restaurateur in restaurateurs">
+				<td>{{$index + 1}}</td>
+				<td>{{restaurateur.firstname}}</td>
+				<td>{{restaurateur.lastname}}</td>
+				<td>
+					<a ng-click="edit(restaurateur)"><i class="glyphicon glyphicon-edit"></i></a>
+					<a ng-click="delete(restaurateur)"><i class="glyphicon glyphicon-remove"></i></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

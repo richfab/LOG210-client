@@ -5,14 +5,19 @@
 
 myApp.config(['$routeProvider', function ($routeProvider) {
 
+	$routeProvider.when('/home', {
+		templateUrl: 'views/home.html',
+		controller: 'HomeViewCtrl'
+	});
+
 	$routeProvider.when('/restaurants', {
 		templateUrl: 'views/restaurants/index.html',
 		controller: 'RestaurantListCtrl'
 	});
 
-	$routeProvider.when('/home', {
-		templateUrl: 'views/home.html',
-		controller: 'HomeViewCtrl'
+	$routeProvider.when('/restaurateurs', {
+		templateUrl: 'views/restaurateurs/index.html',
+		controller: 'RestaurateurListCtrl'
 	});
 
 	$routeProvider.when('/about', {

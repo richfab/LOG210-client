@@ -40,6 +40,7 @@
                     <ul class="nav navbar-nav">
                         <li ng-class="{'active':currentMenu=='home'}"><a href="#/">Accueil</a></li>
                         <li ng-class="{'active':currentMenu=='restaurants'}"><a href="#/restaurants">Restaurants</a></li>
+						<li ng-class="{'active':currentMenu=='restaurateurs'}"><a href="#/restaurateurs">Restaurateurs</a></li>
                         <li ng-class="{'active':currentMenu=='about'}"><a href="#/about">A propos</a></li>
                         <li ng-class="{'active':currentMenu=='contact'}"><a href="#/contact">Contact</a></li>
                     </ul>
@@ -72,8 +73,15 @@
         <script src="js/controllers/home.js"></script>
 		<script src="js/controllers/about.js"></script>
         <script src="js/controllers/contact.js"></script>
+
         <script src="js/controllers/restaurants/index.js"></script>
         <script src="js/controllers/restaurants/add.js"></script>
         <script src="js/controllers/restaurants/edit.js"></script>
+        <script src="js/controllers/restaurants/delete.js"></script>
+
+        <script src="js/controllers/restaurateurs/index.js"></script>
+		<script src="js/controllers/restaurateurs/add.js"></script>
+		<script src="js/controllers/restaurateurs/edit.js"></script>
+		<script src="js/controllers/restaurateurs/delete.js"></script>
     </body>
 </html>
