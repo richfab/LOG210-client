@@ -29,6 +29,8 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 		});
 		*/
 
+		// ============================= Functions to manage =============================
+
 		$scope.add = function () {
 			$modal.open({
 				templateUrl: 'views/restaurants/add.html',
@@ -45,6 +47,23 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 			$modal.open({
 				templateUrl: 'views/restaurants/edit.html',
 				controller: 'RestaurantEditCtrl',
+				resolve: {
+					restaurant: function () {
+						return restaurant;
+					}
+				}
+			}).result.then(function (result) {
+				if (result) {
+					// Show message to warn user that the restaurat has been successfuly created
+					$scope.updateList();
+				}
+			});
+		};
+
+		$scope.delete = function (restaurant) {
+			$modal.open({
+				templateUrl: 'views/restaurants/delete.html',
+				controller: 'RestaurantDeleteCtrl',
 				resolve: {
 					restaurant: function () {
 						return restaurant;
