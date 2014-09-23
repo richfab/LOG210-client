@@ -33,7 +33,7 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 
 		$scope.add = function () {
 			$modal.open({
-				templateUrl: 'views/restaurants/add.html',
+				templateUrl: 'views/restaurants/add-edit.html',
 				controller: 'RestaurantAddCtrl'
 			}).result.then(function (result) {
 				if (result) {
@@ -45,7 +45,7 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 
 		$scope.edit = function (restaurant) {
 			$modal.open({
-				templateUrl: 'views/restaurants/edit.html',
+				templateUrl: 'views/restaurants/add-edit.html',
 				controller: 'RestaurantEditCtrl',
 				resolve: {
 					restaurant: function () {

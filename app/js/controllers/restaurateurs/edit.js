@@ -8,7 +8,7 @@ myApp.controller('RestaurateurEditCtrl', ['$scope', '$modalInstance', 'Restangul
 
 		$scope.restaurateur = restaurateur;
 
-		$scope.edit = function () {
+		$scope.save = function () {
             Restangular.one('restaurateurs', $scope.restaurateur.id).put($scope.restaurateur).then(function (result) {
                 $modalInstance.close(result);
             }, function (result) {
