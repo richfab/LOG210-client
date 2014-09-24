@@ -28,10 +28,12 @@ myApp.controller('RestaurateurListCtrl', ['$scope', '$rootScope', 'Restangular',
 				controller: 'RestaurateurAddCtrl'
 			}).result.then(function (result) {
 				if (result) {
-					// Show message to warn user that the restaurat has been successfuly created
 					$scope.updateList();
+                    $scope.notifySuccess();
 				}
-			});
+			}, function () {
+                $scope.notifyError();
+            });
 		};
 
 		$scope.edit = function (restaurateur) {
@@ -45,13 +47,15 @@ myApp.controller('RestaurateurListCtrl', ['$scope', '$rootScope', 'Restangular',
 				}
 			}).result.then(function (result) {
 				if (result) {
-					// Show message to warn user that the restaurat has been successfuly created
 					$scope.updateList();
+                    $scope.notifySuccess();
 				}
-			});
+			}, function () {
+                $scope.notifyError();
+            });
 		};
 
-		$scope.delete = function (restaurateur) {
+		$scope.remove = function (restaurateur) {
 			$modal.open({
 				templateUrl: 'views/restaurateurs/delete.html',
 				controller: 'RestaurateurDeleteCtrl',
@@ -62,10 +66,12 @@ myApp.controller('RestaurateurListCtrl', ['$scope', '$rootScope', 'Restangular',
 				}
 			}).result.then(function (result) {
 				if (result) {
-					// Show message to warn user that the restaurat has been successfuly created
 					$scope.updateList();
+                    $scope.notifySuccess();
 				}
-			});
+			}, function () {
+                $scope.notifyError();
+            });
 		};
 
 	}]);
