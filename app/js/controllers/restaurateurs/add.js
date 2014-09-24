@@ -13,8 +13,10 @@ myApp.controller('RestaurateurAddCtrl', ['$scope', '$modalInstance', 'Restangula
 	        Restangular.all('restaurateurs').post($scope.restaurateur).then(function (result) {
 	            $modalInstance.close(result);
 	        }, function (result) {
-				// Add a data alert to show error message
-	            //$scope.dataAlert = result;
+                $scope.dataAlert = {
+                    message: result.data,
+                    type: 'danger'
+                };
 	        });
 		};
 

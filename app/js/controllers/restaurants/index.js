@@ -20,15 +20,6 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 
 		$scope.updateList();
 
-		// Example for request one element
-		/*
-		Restangular.one("restaurants", 1).get().then(function (data) {
-			$scope.restaurant = data;
-		}, function () {
-
-		});
-		*/
-
 		// ============================= Functions to manage =============================
 
 		$scope.add = function () {
@@ -38,11 +29,9 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
-                    $scope.notifySuccess();
+                    $scope.notifyMessage("Le restaurant a bien été ajouté", "info");
 				}
-			}, function () {
-                $scope.notifyError();
-            });
+			});
 		};
 
 		$scope.edit = function (restaurant) {
@@ -57,11 +46,9 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
-                    $scope.notifySuccess();
+					$scope.notifyMessage("Le restaurant a bien été modifié", "info");
 				}
-			}, function () {
-                $scope.notifyError();
-            });
+			});
 		};
 
 		$scope.remove = function (restaurant) {
@@ -76,11 +63,9 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
-                    $scope.notifySuccess();
+                    $scope.notifyMessage("Le restaurant a bien été supprimé", "info");
 				}
-			}, function () {
-                $scope.notifyError();
-            });
+			});
 		};
 
 	}]);

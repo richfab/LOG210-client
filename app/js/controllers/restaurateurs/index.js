@@ -29,11 +29,9 @@ myApp.controller('RestaurateurListCtrl', ['$scope', '$rootScope', 'Restangular',
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
-                    $scope.notifySuccess();
+                    $scope.notifyMessage("Le restaurateur a bien été ajouté", "info");
 				}
-			}, function () {
-                $scope.notifyError();
-            });
+			});
 		};
 
 		$scope.edit = function (restaurateur) {
@@ -48,11 +46,9 @@ myApp.controller('RestaurateurListCtrl', ['$scope', '$rootScope', 'Restangular',
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
-                    $scope.notifySuccess();
+                    $scope.notifyMessage("Le restaurateur a bien été modifié", "info");
 				}
-			}, function () {
-                $scope.notifyError();
-            });
+			});
 		};
 
 		$scope.remove = function (restaurateur) {
@@ -67,11 +63,9 @@ myApp.controller('RestaurateurListCtrl', ['$scope', '$rootScope', 'Restangular',
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
-                    $scope.notifySuccess();
+                    $scope.notifyMessage("Le restaurateur a bien été supprimé", "info");
 				}
-			}, function () {
-                $scope.notifyError();
-            });
+			});
 		};
 
 	}]);

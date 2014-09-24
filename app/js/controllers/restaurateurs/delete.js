@@ -12,8 +12,10 @@ myApp.controller('RestaurateurDeleteCtrl', ['$scope', '$modalInstance', 'Restang
             Restangular.one('restaurateurs', $scope.restaurateur.id).remove().then(function (result) {
                 $modalInstance.close(result);
             }, function (result) {
-				// Add a data alert to show error message
-                //$scope.dataAlert = result;
+                $scope.dataAlert = {
+                    message: result.data,
+                    type: 'danger'
+                };
             });
 		};
 
