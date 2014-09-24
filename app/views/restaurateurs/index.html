@@ -1,8 +1,13 @@
 <div class="container">
 
-	<h3>Restaurateurs</h3>
-
-	<button class="btn btn-default" ng-click="add()">Ajouter</button>
+	<nav class="navbar navbar-default">
+		<div class="navbar-brand">Restaurateurs</div>
+		<div class="navbar-brand navbar-right">
+			<a ng-click="add()" tooltip="Ajouter">
+				<i class="glyphicon glyphicon-plus clickable"></i>
+			</a>
+		</div>
+	</nav>
 
 	<table class="table">
 		<thead>
@@ -10,7 +15,7 @@
 				<th>#</th>
 				<th>Nom</th>
 				<th>Prénom</th>
-				<th>Actions</th>
+				<th class="text-right">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,7 +23,7 @@
 				<td>{{$index + 1}}</td>
 				<td>{{restaurateur.firstname}}</td>
 				<td>{{restaurateur.lastname}}</td>
-				<td>
+				<td class="text-right">
 					<a ng-click="edit(restaurateur)" tooltip="Modifier"><i class="glyphicon glyphicon-pencil clickable"></i></a>
 					<a ng-click="remove(restaurateur)" tooltip="Supprimer"><i class="glyphicon glyphicon-remove clickable"></i></a>
 				</td>
