@@ -29,7 +29,10 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
-                    $scope.notifyMessage("Le restaurant a bien été ajouté", "info");
+                    $scope.notifyMessage("Le restaurant a bien été ajouté", "success");
+					if (!result.restaurateur_id) {
+						$scope.notifyMessage("Aucun restaurateur assigné pour ce restaurant", "warning");
+					}
 				}
 			});
 		};
@@ -40,13 +43,13 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 				controller: 'RestaurantEditCtrl',
 				resolve: {
 					restaurant: function () {
-						return restaurant;
+						return Restangular.copy(restaurant);
 					}
 				}
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
-					$scope.notifyMessage("Le restaurant a bien été modifié", "info");
+					$scope.notifyMessage("Le restaurant a bien été modifié", "success");
 				}
 			});
 		};
@@ -63,7 +66,7 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
-                    $scope.notifyMessage("Le restaurant a bien été supprimé", "info");
+                    $scope.notifyMessage("Le restaurant a bien été supprimé", "success");
 				}
 			});
 		};

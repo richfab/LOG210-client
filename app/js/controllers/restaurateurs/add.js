@@ -9,6 +9,16 @@ myApp.controller('RestaurateurAddCtrl', ['$scope', '$modalInstance', 'Restangula
 		// Init restaurateur
 		$scope.restaurateur = {};
 
+        // Get restaurants
+        Restangular.all('restaurants').getList().then(function (result) {
+            $scope.restaurants = result;
+        }, function (result) {
+            $scope.dataAlert = {
+                message: result.data,
+                type: 'danger'
+            };
+        });
+
 		$scope.save = function () {
 	        Restangular.all('restaurateurs').post($scope.restaurateur).then(function (result) {
 	            $modalInstance.close(result);

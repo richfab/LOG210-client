@@ -34,11 +34,12 @@ myApp.controller('RestaurantEditCtrl', ['$scope', '$modalInstance', 'Restangular
                     message: result.data,
                     type: 'danger'
                 };
+
             });
         };
 
         $scope.cancel = function () {
-            $modalInstance.close();
+			$modalInstance.close();
         };
 
     }]);
