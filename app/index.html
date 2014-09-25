@@ -39,13 +39,20 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li ng-class="{'active':currentMenu=='home'}"><a href="#/">Accueil</a></li>
-                    <li ng-class="{'active':currentMenu=='restaurants'}"><a href="#/restaurants">Restaurants</a></li>
-                    <li ng-class="{'active':currentMenu=='restaurateurs'}"><a href="#/restaurateurs">Restaurateurs</a></li>
+                    <li ng-class="{'active':currentMenu=='restaurants'}" ><a href="#/restaurants">Restaurants</a></li>
                     <li ng-class="{'active':currentMenu=='about'}"><a href="#/about">A propos</a></li>
                     <li ng-class="{'active':currentMenu=='contact'}"><a href="#/contact">Contact</a></li>
+					<li class="dropdown" ng-show="currentUser.role=='Entrepreneur'">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#/admin/restaurants">Restaurant</a></li>
+				            <li><a href="#/admin/restaurateurs">Restaurateurs</a></li>
+						</ul>
+					</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Connexion</a></li>
+					<li><a ng-click="profil()" class="clickable" ng-show="currentUser">{{currentUser.firstname}} {{currentUser.lastname}} <i class="glyphicon glyphicon-user"></i></a></li>
+                    <li><a ng-click="login()" class="clickable" ng-show="!currentUser">Connexion <i class="glyphicon glyphicon-user"></i></a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -75,8 +82,10 @@
     <script src="js/controllers/home.js"></script>
     <script src="js/controllers/about.js"></script>
     <script src="js/controllers/contact.js"></script>
+	<script src="js/controllers/login.js"></script>
 
     <script src="js/controllers/restaurants/index.js"></script>
+	<script src="js/controllers/restaurants/index_user.js"></script>
     <script src="js/controllers/restaurants/add.js"></script>
     <script src="js/controllers/restaurants/edit.js"></script>
     <script src="js/controllers/restaurants/delete.js"></script>

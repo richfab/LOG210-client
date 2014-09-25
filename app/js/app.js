@@ -16,7 +16,21 @@ myApp.config(function (RestangularProvider) {
 });
 
 // Run when application is launched
-myApp.run(['$rootScope',
-	function ($rootScope) {
+myApp.run(['$rootScope', '$modal',
+	function ($rootScope, $modal) {
+
+		// Set current menu
 		$rootScope.currentMenu = 'home';
+
+		// Login modal
+		$rootScope.login = function () {
+			$modal.open({
+				templateUrl: 'views/login.html',
+				controller: 'LoginCtrl',
+				size: "sm"
+			}).result.then(function (result) {
+				// Message
+				// Show a welcome message or a notification
+			});
+		};
 	}]);

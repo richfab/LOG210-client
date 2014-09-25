@@ -11,11 +11,16 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 	});
 
 	$routeProvider.when('/restaurants', {
+		templateUrl: 'views/restaurants/index_user.html',
+		controller: 'RestaurantListUserCtrl'
+	});
+
+	$routeProvider.when('/admin/restaurants', {
 		templateUrl: 'views/restaurants/index.html',
 		controller: 'RestaurantListCtrl'
 	});
 
-	$routeProvider.when('/restaurateurs', {
+	$routeProvider.when('/admin/restaurateurs', {
 		templateUrl: 'views/restaurateurs/index.html',
 		controller: 'RestaurateurListCtrl'
 	});
