@@ -13,8 +13,8 @@ myApp.controller('RestaurantListCtrl', ['$scope', '$rootScope', 'Restangular', '
 		$scope.updateList = function () {
 			Restangular.all("restaurants").getList().then(function (data) {
 				$scope.restaurants = data;
-			}, function () {
-
+			}, function (result) {
+				$scope.notifyMessage(result.data, "danger");
 			});
 		};
 
