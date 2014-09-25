@@ -7,7 +7,8 @@
 var myApp = angular.module('myApp', [
 	'ngRoute',
 	'restangular',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'ngCookies'
 ]);
 
 // Configuration of Restangular
@@ -16,11 +17,14 @@ myApp.config(function (RestangularProvider) {
 });
 
 // Run when application is launched
-myApp.run(['$rootScope', '$modal',
-	function ($rootScope, $modal) {
+myApp.run(['$rootScope', '$modal', '$cookieStore',
+	function ($rootScope, $modal, $cookieStore) {
 
 		// Set current menu
 		$rootScope.currentMenu = 'home';
+
+		// Check if a user is connected
+		$rootScope.currentUser = $cookieStore.get("currentuser");
 
 		// Login modal
 		$rootScope.login = function () {
@@ -33,4 +37,9 @@ myApp.run(['$rootScope', '$modal',
 				// Show a welcome message or a notification
 			});
 		};
+
+		$rootScope.logout = function () {
+			$rootScope.currentUser = null;
+			$cookieStore.remove("currentuser");
+		}
 	}]);

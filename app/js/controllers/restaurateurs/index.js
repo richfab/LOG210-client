@@ -7,7 +7,7 @@ myApp.controller('RestaurateurListCtrl', ['$scope', '$rootScope', 'Restangular',
 	function ($scope, $rootScope, Restangular, $modal) {
 
 		// Set current menu
-		$rootScope.currentMenu = 'restaurateurs';
+		$rootScope.currentMenu = null;
 
 		// Update list
 		$scope.updateList = function () {
