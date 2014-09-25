@@ -29,6 +29,9 @@ myApp.controller('RestaurateurListCtrl', ['$scope', '$rootScope', 'Restangular',
 			}).result.then(function (result) {
 				if (result) {
 					$scope.updateList();
+					if (!result.restaurateur_id) {
+						$scope.notifyMessage("Aucun restaurant assigné pour ce restaurateur", "warning");
+					}
                     $scope.notifyMessage("Le restaurateur a bien été ajouté", "success");
 				}
 			});
