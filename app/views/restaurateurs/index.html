@@ -15,6 +15,7 @@
 				<th>#</th>
 				<th>Nom</th>
 				<th>Prénom</th>
+				<th>Restaurant</th>
 				<th class="text-right">Actions</th>
 			</tr>
 		</thead>
@@ -23,6 +24,10 @@
 				<td>{{$index + 1}}</td>
 				<td>{{restaurateur.firstname}}</td>
 				<td>{{restaurateur.lastname}}</td>
+				<td>
+					<div ng-show="!restaurateur.restaurant"><i class="glyphicon glyphicon-warning-sign" tooltip="Aucun restaurant assigné pour ce restaurateur"></i></div>
+					<div ng-show="restaurateur.restaurant">{{restaurateur.restaurant.name}}</div>
+				</td>
 				<td class="text-right">
 					<a ng-click="edit(restaurateur)" tooltip="Modifier"><i class="glyphicon glyphicon-pencil clickable"></i></a>
 					<a ng-click="remove(restaurateur)" tooltip="Supprimer"><i class="glyphicon glyphicon-remove clickable"></i></a>
