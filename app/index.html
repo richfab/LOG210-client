@@ -56,7 +56,12 @@
 				            <li><a ng-click="logout()" class="clickable">Deconnexion</a></li>
 						</ul>
 					</li>
-                    <li><a ng-click="login()" class="clickable" ng-show="!currentUser">Connexion <i class="glyphicon glyphicon-user"></i></a></li>
+					<li>
+						<a ng-click="signin()" class="clickable" ng-show="!currentUser">Inscription</a>
+					</li>
+                    <li>
+						<a ng-click="login()" class="clickable" ng-show="!currentUser">Connexion <i class="glyphicon glyphicon-user"></i></a>
+					</li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -88,6 +93,7 @@
     <script src="js/controllers/about.js"></script>
     <script src="js/controllers/contact.js"></script>
 	<script src="js/controllers/login.js"></script>
+	<script src="js/controllers/signin.js"></script>
 
     <script src="js/controllers/restaurants/index.js"></script>
 	<script src="js/controllers/restaurants/index_user.js"></script>

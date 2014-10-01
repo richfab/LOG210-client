@@ -1,0 +1,88 @@
+<div class="modal-header">
+	<h3 class="modal-title">Formulaire d'inscription</h3>
+</div>
+
+<form name="signinForm">
+
+	<div class="modal-body">
+		<alert-message alert-data="dataAlert"></alert-message>
+
+		<div class="control-group">
+			<label class="control-label">Nom *</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.lastname" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Prénom *</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.firstname" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Téléphone</label>
+			<div class="controls">
+				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
+			</div>
+			<span ng-show="signinForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Adresse</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.address">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Ville</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.city">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Code postal</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.zipcode">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Pays</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.country">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Mail *</label>
+			<div class="controls">
+				<input class="form-control" name="mail" type="email" ng-model="user.mail" ng-pattern="//"required>
+				<span ng-show="signinForm.mail.$error.email">Le format de l'adresse mail est incorrect</span>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Mot de passe *</label>
+			<div class="controls">
+				<input class="form-control" type="password" ng-model="user.password" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Répétez mot de passe *</label>
+			<div class="controls">
+				<input class="form-control" type="password" ng-model="user.password_secure" required>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="signin()" ng-disabled="signinForm.$invalid">S'inscrire</button>
+		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
+	</div>
+
+</form>

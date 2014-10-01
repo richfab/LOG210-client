@@ -19,6 +19,17 @@ myApp.controller('RestaurateurEditCtrl', ['$scope', '$modalInstance', 'Restangul
             };
         });
 
+        // Get countries
+        Restangular.all('countries').getList().then(function (result) {
+            $scope.countries = result;
+        }, function (result) {
+            $scope.dataAlert = {
+                message: result.data,
+                type: 'danger'
+            };
+        });
+
+		// Save restaurateur
 		$scope.save = function () {
             Restangular.one('restaurateurs', $scope.restaurateur.id).put($scope.restaurateur).then(function (result) {
                 $modalInstance.close(result);
@@ -30,6 +41,7 @@ myApp.controller('RestaurateurEditCtrl', ['$scope', '$modalInstance', 'Restangul
             });
 		};
 
+		// Cancel restaurateur editing
 		$scope.cancel = function () {
 			$modalInstance.close();
 		};

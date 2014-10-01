@@ -23,7 +23,7 @@ myApp.run(['$rootScope', '$modal', '$cookieStore',
 		// Set current menu
 		$rootScope.currentMenu = 'home';
 
-		// Check if a user is connected
+		// Check if a user is connected from the cookies
 		$rootScope.currentUser = $cookieStore.get("currentuser");
 
 		// Login modal
@@ -38,8 +38,21 @@ myApp.run(['$rootScope', '$modal', '$cookieStore',
 			});
 		};
 
+		// Signin modal
+		$rootScope.signin = function () {
+			$modal.open({
+				templateUrl: 'views/signin.html',
+				controller: 'SigninCtrl'
+			}).result.then(function (result) {
+				// Message
+				// Show a welcome message or a notification
+			});
+		};
+
+		// Logout
 		$rootScope.logout = function () {
 			$rootScope.currentUser = null;
 			$cookieStore.remove("currentuser");
 		}
+
 	}]);

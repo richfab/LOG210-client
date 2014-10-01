@@ -19,6 +19,17 @@ myApp.controller('RestaurantAddCtrl', ['$scope', '$modalInstance', 'Restangular'
             };
         });
 
+        // Get countries
+        Restangular.all('countries').getList().then(function (result) {
+            $scope.countries = result;
+        }, function (result) {
+            $scope.dataAlert = {
+                message: result.data,
+                type: 'danger'
+            };
+        });
+
+		// Save restaurant
         $scope.save = function () {
 
 			// Test whether restaurateur id is integer
@@ -37,6 +48,7 @@ myApp.controller('RestaurantAddCtrl', ['$scope', '$modalInstance', 'Restangular'
             });
         };
 
+		// Cancel restaurant adding
         $scope.cancel = function () {
             $modalInstance.close();
         };

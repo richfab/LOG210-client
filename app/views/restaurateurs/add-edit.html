@@ -52,7 +52,9 @@
 		<div class="control-group">
 			<label class="control-label">Pays</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="restaurateur.country">
+				<select class="form-control" type="text" ng-model="restaurateur.country_id" ng-options="country.id as country.name for country in countries">
+					<option value="">--</option>
+				</select>
 			</div>
 		</div>
 
