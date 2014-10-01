@@ -17,8 +17,8 @@ myApp.config(function (RestangularProvider) {
 });
 
 // Run when application is launched
-myApp.run(['$rootScope', '$modal', '$cookieStore',
-	function ($rootScope, $modal, $cookieStore) {
+myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
+	function ($rootScope, $modal, $cookieStore, $location) {
 
 		// Set current menu
 		$rootScope.currentMenu = 'home';
@@ -53,6 +53,17 @@ myApp.run(['$rootScope', '$modal', '$cookieStore',
 		$rootScope.logout = function () {
 			$rootScope.currentUser = null;
 			$cookieStore.remove("currentuser");
+			$location.path("/");
 		}
+
+		// Check page
+        $rootScope.$on("$routeChangeStart", function (event, current, next) {
+			if ($location.path().match("/admin/")) { // or with current.$$route.originalPath
+				if ($rootScope.currentUser == null || $rootScope.currentUser.firstname != "Entre") {
+					// Change the condition by role instead of firstname when we will know the role of user
+					$location.path("/");
+				}
+			}
+        });
 
 	}]);

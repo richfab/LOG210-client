@@ -24,7 +24,8 @@
 		<div class="control-group">
 			<label class="control-label">Téléphone</label>
 			<div class="controls">
-				<input class="form-control" type="text" name="phone" ng-model="restaurateur.phone">
+				<input class="form-control" type="text" name="phone" ng-model="restaurateur.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
+				<span ng-show="restaurateurForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
 			</div>
 		</div>
 
@@ -61,7 +62,8 @@
 		<div class="control-group">
 			<label class="control-label">Mail *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="restaurateur.mail" required>
+				<input class="form-control" name="mail" type="email" ng-model="restaurateur.mail" required>
+				<span ng-show="restaurateurForm.mail.$error.email">Le format de l'adresse mail est incorrect</span>
 			</div>
 		</div>
 

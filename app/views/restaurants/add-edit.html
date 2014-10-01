@@ -17,7 +17,8 @@
 		<div class="control-group">
 			<label class="control-label">Téléphone</label>
 			<div class="controls">
-				<input class="form-control" type="text" name="phone" ng-model="restaurant.phone">
+				<input class="form-control" type="text" name="phone" ng-model="restaurant.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
+				<span ng-show="restaurantForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
 			</div>
 		</div>
 
