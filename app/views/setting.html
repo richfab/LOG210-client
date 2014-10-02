@@ -67,7 +67,8 @@
 		<div class="control-group">
 			<label class="control-label">Répétez mot de passe *</label>
 			<div class="controls">
-				<input class="form-control" type="password" ng-model="user.password_secure" required>
+				<input class="form-control" type="password" name="password_secure" ng-model="user.password_secure" ng-match="user.password" required>
+				<span ng-show="editProfilForm.password_secure.$error.match">Le mot de passe doit être le même qu'au précédent champ</span>
 			</div>
 		</div>
 	</div>

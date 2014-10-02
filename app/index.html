@@ -53,7 +53,7 @@
 					<li class="dropdown" ng-show="currentUser">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.firstname}} {{currentUser.lastname}} <i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-				            <!-- <li><a ng-click="setting()" class="clickable">Paramètres</a></li> -->
+				            <li><a ng-click="setting()" class="clickable">Paramètres</a></li>
 				            <li><a ng-click="logout()" class="clickable">Deconnexion</a></li>
 						</ul>
 					</li>
@@ -90,6 +90,8 @@
     <script src="js/controllers/alert.js"></script>
 
     <script src="js/directives/alert-message.js"></script>
+    <script src="js/directives/ng-match.js"></script>
+
     <script src="js/controllers/home.js"></script>
     <script src="js/controllers/about.js"></script>
     <script src="js/controllers/contact.js"></script>

@@ -26,6 +26,14 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 		// Check if a user is connected from the cookies
 		$rootScope.currentUser = $cookieStore.get("currentuser");
 
+		// Signin modal
+		$rootScope.signin = function () {
+			$modal.open({
+				templateUrl: 'views/signin.html',
+				controller: 'SigninCtrl'
+			});
+		};
+
 		// Login modal
 		$rootScope.login = function (user) {
 			$modal.open({
@@ -38,44 +46,38 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 					}
 				}
 			}).result.then(function (result) {
-				// Message
-				// Show a welcome message or a notification
-			});
-		};
-
-		// Signin modal
-		$rootScope.signin = function () {
-			$modal.open({
-				templateUrl: 'views/signin.html',
-				controller: 'SigninCtrl'
-			}).result.then(function (result) {
-				// Message
-				// Show a welcome message or a notification
+				if (result == true) {
+					$rootScope.notifyMessage("Connexion effectuée.", "info");
+				}
 			});
 		};
 
 		// Logout
 		$rootScope.logout = function () {
+			$rootScope.notifyMessage("Deconnexion effectuée", "info");
 			$rootScope.currentUser = null;
 			$cookieStore.remove("currentuser");
 			$location.path("/");
 		}
 
+		// Profil settings
 		$rootScope.setting = function () {
 			$modal.open({
 				templateUrl: 'views/setting.html',
 				controller: 'EditProfilCtrl'
 			}).result.then(function (result) {
-				// Message
-				// Show a welcome message or a notification
+				if (result == 'edit') {
+					$rootScope.notifyMessage("Informations mise à jour avec succès.", "info");
+				} else if (result == 'remove') {
+					$rootScope.notifyMessage("Suppression du profil effectué.", "info");
+				}
 			});
 		}
 
-		// Check page
+		// Redirection
         $rootScope.$on("$routeChangeStart", function (event, current, next) {
 			if ($location.path().match("/admin/")) { // or with current.$$route.originalPath
-				if ($rootScope.currentUser == null || $rootScope.currentUser.firstname != "Entre") {
-					// Change the condition by role instead of firstname when we will know the role of user
+				if ($rootScope.currentUser == null || $rootScope.currentUser.type != "entrepreneur") {
 					$location.path("/");
 				}
 			}

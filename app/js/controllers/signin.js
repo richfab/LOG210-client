@@ -9,6 +9,7 @@ myApp.controller('SigninCtrl', ['$rootScope', '$scope', '$modalInstance', '$cook
 		$scope.user = {};
 		$scope.completed = false;
 
+		// Signin
 		$scope.signin = function () {
 	        Restangular.all('clients').post($scope.user).then(function (result) {
 				$scope.completed = true;
@@ -20,11 +21,13 @@ myApp.controller('SigninCtrl', ['$rootScope', '$scope', '$modalInstance', '$cook
 	        });
 		};
 
+		// Redirect to login modal
 		$scope.login = function () {
 			$modalInstance.close();
 			$rootScope.login($scope.user);
 		}
 
+		// Close modal
 		$scope.cancel = function () {
 			$modalInstance.close();
 		};
