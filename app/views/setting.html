@@ -1,42 +1,8 @@
 <div class="modal-header">
-	<h3 class="modal-title" ng-show="!completed">Formulaire d'inscription</h3>
-	<h3 class="modal-title" ng-show="completed">Merci de vous être inscrit !</h3>
+	<h3 class="modal-title">Edition de profil</h3>
 </div>
 
-<div ng-show="completed">
-	<div class="modal-body">
-		<div class="row">
-			<div class="col-md-3 text-right"><b>Nom</b></div>
-			<div class="col-md-9">{{user.firstname}}</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3 text-right"><b>Prénom</b></div>
-			<div class="col-md-9">{{user.lastname}}</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3 text-right"><b>Téléphone</b></div>
-			<div class="col-md-9">{{user.phone}}</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3 text-right"><b>Adresse</b></div>
-			<div class="col-md-9">
-				{{user.address}}<br>
-				{{user.city}} {{user.zipcode}}<br>
-				{{user.country}}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3 text-right"><b>Identifiant</b></div>
-			<div class="col-md-9">{{user.mail}}</div>
-		</div>
-	</div>
-
-	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="login()">Connectez-vous</button>
-	</div>
-</div>
-
-<form name="signinForm" ng-show="!completed">
+<form name="editProfilForm">
 
 	<div class="modal-body">
 		<alert-message alert-data="dataAlert"></alert-message>
@@ -92,14 +58,6 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Mail *</label>
-			<div class="controls">
-				<input class="form-control" name="mail" type="email" ng-model="user.mail" required>
-				<span ng-show="signinForm.mail.$error.email">Le format de l'adresse mail est incorrect</span>
-			</div>
-		</div>
-
-		<div class="control-group">
 			<label class="control-label">Mot de passe *</label>
 			<div class="controls">
 				<input class="form-control" type="password" ng-model="user.password" required>
@@ -115,8 +73,9 @@
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="signin()" ng-disabled="signinForm.$invalid">S'inscrire</button>
+		<button class="btn btn-danger align-left" ng-click="remove()">Supprimer profil</button>
 		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
+		<button class="btn btn-primary" ng-click="edit()" ng-disabled="editProfilForm.$invalid">Valider</button>
 	</div>
 
 </form>

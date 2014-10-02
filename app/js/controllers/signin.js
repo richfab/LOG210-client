@@ -7,14 +7,23 @@ myApp.controller('SigninCtrl', ['$rootScope', '$scope', '$modalInstance', '$cook
 	function AlertCtrl($rootScope, $scope, $modalInstance, $cookieStore, Restangular) {
 
 		$scope.user = {};
+		$scope.completed = false;
 
 		$scope.signin = function () {
 	        Restangular.all('clients').post($scope.user).then(function (result) {
-				$modalInstance.close();
+				$scope.completed = true;
 	        }, function (result) {
-                console.log(result);
+                $scope.dataAlert = {
+                    message: result.data,
+                    type: 'danger'
+                };
 	        });
 		};
+
+		$scope.login = function () {
+			$modalInstance.close();
+			$rootScope.login($scope.user);
+		}
 
 		$scope.cancel = function () {
 			$modalInstance.close();

@@ -27,11 +27,16 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 		$rootScope.currentUser = $cookieStore.get("currentuser");
 
 		// Login modal
-		$rootScope.login = function () {
+		$rootScope.login = function (user) {
 			$modal.open({
 				templateUrl: 'views/login.html',
 				controller: 'LoginCtrl',
-				size: "sm"
+				size: "sm",
+				resolve: {
+					user: function () {
+						return user;
+					}
+				}
 			}).result.then(function (result) {
 				// Message
 				// Show a welcome message or a notification
@@ -54,6 +59,16 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 			$rootScope.currentUser = null;
 			$cookieStore.remove("currentuser");
 			$location.path("/");
+		}
+
+		$rootScope.setting = function () {
+			$modal.open({
+				templateUrl: 'views/setting.html',
+				controller: 'EditProfilCtrl'
+			}).result.then(function (result) {
+				// Message
+				// Show a welcome message or a notification
+			});
 		}
 
 		// Check page

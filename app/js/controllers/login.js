@@ -3,10 +3,14 @@
 
 'use strict';
 
-myApp.controller('LoginCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore', 'Restangular',
-	function AlertCtrl($rootScope, $scope, $modalInstance, $cookieStore, Restangular) {
+myApp.controller('LoginCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore', 'Restangular', 'user',
+	function ($rootScope, $scope, $modalInstance, $cookieStore, Restangular, user) {
 
-		$scope.user = {};
+		if (user != null) {
+			$scope.user = user;
+		} else {
+			$scope.user = {};
+		}
 
 		$scope.login = function () {
 	        Restangular.all('accesstokens').post($scope.user).then(function (result) {
@@ -14,7 +18,10 @@ myApp.controller('LoginCtrl', ['$rootScope', '$scope', '$modalInstance', '$cooki
 				$cookieStore.put("currentuser", $rootScope.currentUser);
 				$modalInstance.close();
 	        }, function (result) {
-                console.log(result);
+                $scope.dataAlert = {
+                    message: result.data,
+                    type: 'danger'
+                };
 	        });
 		};
 
