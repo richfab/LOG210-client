@@ -3,13 +3,17 @@
 
 'use strict';
 
-myApp.controller('SigninCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore',
-	function AlertCtrl($rootScope, $scope, $modalInstance, $cookieStore) {
+myApp.controller('SigninCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore', 'Restangular',
+	function AlertCtrl($rootScope, $scope, $modalInstance, $cookieStore, Restangular) {
 
 		$scope.user = {};
 
 		$scope.signin = function () {
-			$modalInstance.close();
+	        Restangular.all('clients').post($scope.user).then(function (result) {
+				$modalInstance.close();
+	        }, function (result) {
+                console.log(result);
+	        });
 		};
 
 		$scope.cancel = function () {

@@ -3,17 +3,19 @@
 
 'use strict';
 
-myApp.controller('LoginCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore',
-	function AlertCtrl($rootScope, $scope, $modalInstance, $cookieStore) {
+myApp.controller('LoginCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore', 'Restangular',
+	function AlertCtrl($rootScope, $scope, $modalInstance, $cookieStore, Restangular) {
 
 		$scope.user = {};
 
 		$scope.login = function () {
-			if ($scope.user.mail == "entre" & $scope.user.password == "preneur") {
-				$rootScope.currentUser = {firstname: "Entre", lastname: "Preneur", role: "Entrepreneur"};
+	        Restangular.all('accesstokens').post($scope.user).then(function (result) {
+				$rootScope.currentUser = result;
 				$cookieStore.put("currentuser", $rootScope.currentUser);
-			}
-			$modalInstance.close();
+				$modalInstance.close();
+	        }, function (result) {
+                console.log(result);
+	        });
 		};
 
 		$scope.cancel = function () {
