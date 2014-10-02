@@ -63,7 +63,7 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 		// Redirection
         $rootScope.$on("$routeChangeStart", function (event, current, next) {
 			if ($location.path().match("/admin/")) { // or with current.$$route.originalPath
-				if ($rootScope.currentUser === null || $rootScope.currentUser.type !== "entrepreneur") {
+				if ($rootScope.currentUser == null || $rootScope.currentUser.type != "entrepreneur") {
 					$location.path("/");
 				}
 			}
