@@ -26,11 +26,11 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 		// Check if a user is connected from the cookies
 		$rootScope.currentUser = $cookieStore.get("currentuser");
 
-		// Signin modal
-		$rootScope.signin = function () {
+		// Signup modal
+		$rootScope.signup = function () {
 			$modal.open({
-				templateUrl: 'views/signin.html',
-				controller: 'SigninCtrl'
+				templateUrl: 'views/signup.html',
+				controller: 'SignupCtrl'
 			});
 		};
 
@@ -46,7 +46,7 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 					}
 				}
 			}).result.then(function (result) {
-				if (result == true) {
+				if (result === true) {
 					$rootScope.notifyMessage("Connexion effectuée.", "info");
 				}
 			});
@@ -58,26 +58,12 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 			$rootScope.currentUser = null;
 			$cookieStore.remove("currentuser");
 			$location.path("/");
-		}
-
-		// Profil settings
-		$rootScope.setting = function () {
-			$modal.open({
-				templateUrl: 'views/setting.html',
-				controller: 'EditProfilCtrl'
-			}).result.then(function (result) {
-				if (result == 'edit') {
-					$rootScope.notifyMessage("Informations mise à jour avec succès.", "info");
-				} else if (result == 'remove') {
-					$rootScope.notifyMessage("Suppression du profil effectué.", "info");
-				}
-			});
-		}
+		};
 
 		// Redirection
         $rootScope.$on("$routeChangeStart", function (event, current, next) {
 			if ($location.path().match("/admin/")) { // or with current.$$route.originalPath
-				if ($rootScope.currentUser == null || $rootScope.currentUser.type != "entrepreneur") {
+				if ($rootScope.currentUser === null || $rootScope.currentUser.type !== "entrepreneur") {
 					$location.path("/");
 				}
 			}

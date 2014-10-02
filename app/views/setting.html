@@ -10,21 +10,21 @@
 		<div class="control-group">
 			<label class="control-label">Nom *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.lastname" required>
+				<input class="form-control" type="text" ng-model="user.lastname" placeholder="Nom" required>
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label">Prénom *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.firstname" required>
+				<input class="form-control" type="text" ng-model="user.firstname" placeholder="Prénom" required>
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label">Téléphone</label>
 			<div class="controls">
-				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
+				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/" placeholder="ex: 514-123-4567">
 				<span ng-show="editProfilForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
 			</div>
 		</div>
@@ -76,7 +76,6 @@
 	<div class="modal-footer">
 		<button class="btn btn-primary" ng-click="edit()" ng-disabled="editProfilForm.$invalid">Valider</button>
 		<button class="btn btn-danger align-left" ng-click="remove()">Supprimer profil</button>
-		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
 	</div>
 
 </form>

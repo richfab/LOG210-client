@@ -6,7 +6,7 @@
 myApp.controller('LoginCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore', 'Restangular', 'user',
 	function ($rootScope, $scope, $modalInstance, $cookieStore, Restangular, user) {
 
-		// Get user from signin page
+		// Get user from signup page
 		if (user != null) {
 			$scope.user = user;
 		} else {

@@ -3,8 +3,10 @@
 
 'use strict';
 
-myApp.controller('EditProfilCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore', 'Restangular',
-	function ($rootScope, $scope, $modalInstance, $cookieStore, Restangular) {
+myApp.controller('EditProfilCtrl', ['$rootScope', '$scope', '$cookieStore', 'Restangular',
+	function ($rootScope, $scope, $cookieStore, Restangular) {
+        
+        $rootScope.currentMenu = 'settings';
 
 		// Get user
 		$scope.user = angular.copy($rootScope.currentUser);
@@ -15,7 +17,7 @@ myApp.controller('EditProfilCtrl', ['$rootScope', '$scope', '$modalInstance', '$
 			Restangular.one($scope.user.type + 's', $scope.user.id).put($scope.user).then(function (result) {
 				$rootScope.currentUser = result;
 				$cookieStore.put("currentuser", $rootScope.currentUser);
-				$modalInstance.close('edit');
+                $rootScope.notifyMessage("Informations mises à jour avec succès.", "info");
 			}, function (result) {
 				$scope.dataAlert = {
 					message: result.data,
@@ -28,19 +30,14 @@ myApp.controller('EditProfilCtrl', ['$rootScope', '$scope', '$modalInstance', '$
 		$scope.remove = function () {
 			Restangular.one($scope.user.type + 's', $scope.user.id).remove().then(function (result) {
 				// Remove cookie and current user from rootScope
-				$cookieStore.remove('currentUser');
-				$rootScope.currentUser = null;
-				$modalInstance.close('remove');
+				$rootScope.logout();
+                $rootScope.notifyMessage("Suppression du profil effectuée.", "info");
 			}, function (result) {
 				$scope.dataAlert = {
 					message: result.data,
 					type: 'danger'
 				};
 			});
-		}
-
-		$scope.cancel = function () {
-			$modalInstance.close();
 		};
 
 	}]);

@@ -34,6 +34,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		templateUrl: 'views/contact.html',
 		controller: 'ContactViewCtrl'
 	});
+    
+    $routeProvider.when('/settings', {
+        templateUrl: 'views/setting.html',
+        controller: 'EditProfilCtrl'
+    });
 
 	$routeProvider.otherwise({redirectTo: '/home'});
 
