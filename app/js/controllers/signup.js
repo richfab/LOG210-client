@@ -6,7 +6,7 @@
 myApp.controller('SignupCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore', 'Restangular',
 	function AlertCtrl($rootScope, $scope, $modalInstance, $cookieStore, Restangular) {
 
-		$scope.user = {};
+		$scope.user = {firstname : "Firstname", lastname : "Lastname", phone : "123-456-7890", address : "Adresse", city : "City", zipcode : "123456", country : "Country", mail : "email" + Date.now() + "@em.com", password : "password", password_secure : "password"};
 		$scope.completed = false;
 
 		// Signup

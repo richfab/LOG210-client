@@ -3,14 +3,24 @@
 
 'use strict';
 
-myApp.controller('EditProfilCtrl', ['$rootScope', '$scope', '$cookieStore', 'Restangular',
-	function ($rootScope, $scope, $cookieStore, Restangular) {
+myApp.controller('EditProfilCtrl', ['$rootScope', '$scope', '$modal', '$cookieStore', 'Restangular',
+	function ($rootScope, $scope, $modal, $cookieStore, Restangular) {
         
         $rootScope.currentMenu = 'settings';
 
 		// Get user
 		$scope.user = angular.copy($rootScope.currentUser);
 		$scope.user.password_secure = $scope.user.password;
+        
+        // Get countries
+        Restangular.all('countries').getList().then(function (result) {
+            $scope.countries = result;
+        }, function (result) {
+            $scope.dataAlert = {
+                message: result.data,
+                type: 'danger'
+            };
+        });
 
 		// Edit profil
 		$scope.edit = function () {
@@ -27,16 +37,15 @@ myApp.controller('EditProfilCtrl', ['$rootScope', '$scope', '$cookieStore', 'Res
 		};
 
 		// Remove profil
-		$scope.remove = function () {
-			Restangular.one($scope.user.type + 's', $scope.user.id).remove().then(function (result) {
-				// Remove cookie and current user from rootScope
-				$rootScope.logout();
-                $rootScope.notifyMessage("Suppression du profil effectuée.", "info");
-			}, function (result) {
-				$scope.dataAlert = {
-					message: result.data,
-					type: 'danger'
-				};
+        $scope.remove = function (user) {
+			$modal.open({
+				templateUrl: 'views/users/delete.html',
+				controller: 'UserDeleteCtrl',
+				resolve: {
+					user: function () {
+						return user;
+					}
+				}
 			});
 		};
 
