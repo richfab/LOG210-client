@@ -25,7 +25,7 @@
 			<label class="control-label">Téléphone</label>
 			<div class="controls">
 				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
-				<span ng-show="signinForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
+				<span ng-show="editProfilForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
 			</div>
 		</div>
 
@@ -74,9 +74,9 @@
 	</div>
 
 	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="edit()" ng-disabled="editProfilForm.$invalid">Valider</button>
 		<button class="btn btn-danger align-left" ng-click="remove()">Supprimer profil</button>
 		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
-		<button class="btn btn-primary" ng-click="edit()" ng-disabled="editProfilForm.$invalid">Valider</button>
 	</div>
 
 </form>
