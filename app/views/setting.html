@@ -1,0 +1,81 @@
+<div class="modal-header">
+	<h3 class="modal-title">Edition de profil</h3>
+</div>
+
+<form name="editProfilForm">
+
+	<div class="modal-body">
+		<alert-message alert-data="dataAlert"></alert-message>
+
+		<div class="control-group">
+			<label class="control-label">Nom *</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.lastname" placeholder="Nom" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Prénom *</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.firstname" placeholder="Prénom" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Téléphone</label>
+			<div class="controls">
+				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/" placeholder="ex: 514-123-4567">
+				<span ng-show="editProfilForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Adresse</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.address">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Ville</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.city">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Code postal</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.zipcode">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Pays</label>
+			<div class="controls">
+				<input class="form-control" type="text" ng-model="user.country">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Mot de passe *</label>
+			<div class="controls">
+				<input class="form-control" type="password" ng-model="user.password" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Répétez mot de passe *</label>
+			<div class="controls">
+				<input class="form-control" type="password" name="password_secure" ng-model="user.password_secure" ng-match="user.password" required>
+				<span ng-show="editProfilForm.password_secure.$error.match">Le mot de passe doit être le même qu'au précédent champ</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="edit()" ng-disabled="editProfilForm.$invalid">Valider</button>
+		<button class="btn btn-danger align-left" ng-click="remove()">Supprimer profil</button>
+	</div>
+
+</form>

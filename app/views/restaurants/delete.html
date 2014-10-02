@@ -1,0 +1,17 @@
+<div class="modal-header">
+	<h3 class="modal-title">Suppresion du restaurant '{{restaurant.name}}'</h3>
+</div>
+
+<form name="restaurantForm">
+
+	<div class="modal-body">
+		<alert-message alert-data="dataAlert"></alert-message>
+		Etes-vous sur de vouloir supprimer ce restaurant ?
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-danger" ng-click="delete()">Supprimer</button>
+		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
+	</div>
+
+</form>

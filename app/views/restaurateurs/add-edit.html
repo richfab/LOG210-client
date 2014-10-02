@@ -1,0 +1,92 @@
+<div class="modal-header">
+	<h3 class="modal-title">Restaurateur '{{restaurateur.firstname}} {{restaurateur.lastname}}'</h3>
+</div>
+
+<form name="restaurateurForm">
+	<div class="modal-body">
+
+		<alert-message alert-data="dataAlert"></alert-message>
+
+		<div class="control-group">
+			<label class="control-label">Nom *</label>
+			<div class="controls">
+				<input class="form-control" type="text" name="firstname" ng-model="restaurateur.firstname" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Prénom *</label>
+			<div class="controls">
+				<input class="form-control" type="text" name="lastname" ng-model="restaurateur.lastname" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Téléphone</label>
+			<div class="controls">
+				<input class="form-control" type="text" name="phone" ng-model="restaurateur.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
+				<span ng-show="restaurateurForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Adresse</label>
+			<div class="controls">
+				<input class="form-control" type="text" name="address" ng-model="restaurateur.address">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Code postal</label>
+			<div class="controls">
+				<input class="form-control" type="text" name="zipcode" ng-model="restaurateur.zipcode">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Ville</label>
+			<div class="controls">
+				<input class="form-control" type="text" name="city" ng-model="restaurateur.city">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Pays</label>
+			<div class="controls">
+				<select class="form-control" type="text" ng-model="restaurateur.country_id" ng-options="country.id as country.name for country in countries">
+					<option value="">--</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Courriel *</label>
+			<div class="controls">
+				<input class="form-control" name="mail" type="email" ng-model="restaurateur.mail" required>
+				<span ng-show="restaurateurForm.mail.$error.email">Le format de l'adresse mail est incorrect</span>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Mot de passe *</label>
+			<div class="controls">
+				<input class="form-control" type="password" ng-model="restaurateur.password" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Restaurant</label>
+			<div class="controls">
+				<select class="form-control" type="text" name="firstname" ng-model="restaurateur.restaurant_id" ng-options="r.id as r.name for r in restaurants">
+					<option value="">--</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="save()" ng-disabled="restaurateurForm.$invalid">Valider</button>
+		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
+	</div>
+
+</form>

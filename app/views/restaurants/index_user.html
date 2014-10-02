@@ -1,0 +1,27 @@
+<div class="container">
+
+	<nav class="navbar navbar-default">
+		<div class="navbar-brand">Restaurants</div>
+	</nav>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Téléphone</th>
+				<th>Addresse</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="restaurant in restaurants">
+				<td>{{restaurant.name}}</td>
+				<td>{{restaurant.phone}}</td>
+				<td>{{restaurant.address}}<br/>
+					{{restaurant.zipcode}} {{restaurant.city}}<br/>
+					{{restaurant.country.name}}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
