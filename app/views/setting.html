@@ -22,38 +22,38 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Téléphone</label>
+			<label class="control-label">Téléphone *</label>
 			<div class="controls">
-				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/" placeholder="ex: 514-123-4567">
+				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/" placeholder="ex: 514-123-4567" required>
 				<span ng-show="editProfilForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Adresse</label>
+			<label class="control-label">Adresse *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.address">
+				<input class="form-control" type="text" ng-model="user.address" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Ville</label>
+			<label class="control-label">Ville *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.city">
+				<input class="form-control" type="text" ng-model="user.city" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Code postal</label>
+			<label class="control-label">Code postal *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.zipcode">
+				<input class="form-control" type="text" ng-model="user.zipcode" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Pays</label>
+			<label class="control-label">Pays *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.country">
+				<input class="form-control" type="text" ng-model="user.country" required>
 			</div>
 		</div>
 
