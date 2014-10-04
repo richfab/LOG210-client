@@ -22,38 +22,50 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Téléphone</label>
+			<label class="control-label">Date de naissance</label>
 			<div class="controls">
-				<input class="form-control" type="text" name="phone" ng-model="restaurateur.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
+				<p class="input-group">
+					<input type="text" class="form-control" ng-click="open($event)" datepicker-popup="dd.MM.yyyy" ng-model="restaurateur.birthdate" is-open="opened" datepicker-options="dateOptions" close-text="Fermer"/>
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					</span>
+				</p>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label">Téléphone *</label>
+			<div class="controls">
+				<input class="form-control" type="text" name="phone" ng-model="restaurateur.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/" required>
 				<span ng-show="restaurateurForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Adresse</label>
+			<label class="control-label">Adresse *</label>
 			<div class="controls">
-				<input class="form-control" type="text" name="address" ng-model="restaurateur.address">
+				<input class="form-control" type="text" name="address" ng-model="restaurateur.address" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Code postal</label>
+			<label class="control-label">Code postal *</label>
 			<div class="controls">
-				<input class="form-control" type="text" name="zipcode" ng-model="restaurateur.zipcode">
+				<input class="form-control" type="text" name="zipcode" ng-model="restaurateur.zipcode" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Ville</label>
+			<label class="control-label">Ville *</label>
 			<div class="controls">
-				<input class="form-control" type="text" name="city" ng-model="restaurateur.city">
+				<input class="form-control" type="text" name="city" ng-model="restaurateur.city" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Pays</label>
+			<label class="control-label">Pays *</label>
 			<div class="controls">
-				<select class="form-control" type="text" ng-model="restaurateur.country_id" ng-options="country.id as country.name for country in countries">
+				<select class="form-control" type="text" ng-model="restaurateur.country_id" ng-options="country.id as country.name for country in countries" required>
 					<option value="">--</option>
 				</select>
 			</div>

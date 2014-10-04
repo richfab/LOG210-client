@@ -57,6 +57,18 @@
 		</div>
 
 		<div class="control-group">
+			<label class="control-label">Date de naissance</label>
+			<div class="controls">
+				<p class="input-group">
+					<input type="text" class="form-control" ng-click="open($event)" datepicker-popup="dd.MM.yyyy" ng-model="user.birthdate" is-open="opened" datepicker-options="dateOptions" close-text="Fermer"/>
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					</span>
+				</p>
+			</div>
+		</div>
+
+		<div class="control-group">
 			<label class="control-label">Téléphone *</label>
 			<div class="controls">
 				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/" required>
@@ -87,9 +99,9 @@
 
 		<div class="control-group">
 			<label class="control-label">Pays *</label>
-			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.country" required>
-			</div>
+			<select class="form-control" type="text" ng-model="user.country_id" ng-options="country.id as country.name for country in countries" required>
+				<option value="">--</option>
+			</select>
 		</div>
 
 		<div class="control-group">

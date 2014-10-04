@@ -11,11 +11,6 @@ var myApp = angular.module('myApp', [
 	'ngCookies'
 ]);
 
-// Configuration of Restangular
-myApp.config(function (RestangularProvider) {
-	RestangularProvider.setBaseUrl('http://localhost:5000');
-});
-
 // Run when application is launched
 myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 	function ($rootScope, $modal, $cookieStore, $location) {

@@ -25,6 +25,19 @@
                                 <input class="form-control" type="text" ng-model="user.firstname" placeholder="Prénom" required>
                             </div>
                         </div>
+
+						<div class="control-group">
+							<label class="control-label">Date de naissance</label>
+							<div class="controls">
+								<p class="input-group">
+									<input type="text" class="form-control" ng-click="open($event)" datepicker-popup="dd.MM.yyyy" ng-model="user.birthdate" is-open="opened" datepicker-options="dateOptions" close-text="Fermer"/>
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+									</span>
+								</p>
+							</div>
+						</div>
+
                     </div>
                 </div>
             </div>
