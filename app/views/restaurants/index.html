@@ -30,7 +30,7 @@
 					{{restaurant.country.name}}
 				</td>
 				<td>
-					<div ng-show="!restaurant.restaurateur"><i class="glyphicon glyphicon-warning-sign" tooltip="Aucun restaurateur assigné pour ce restaurant"></i></div>
+					<div ng-show="!restaurant.restaurateur"><i class="glyphicon glyphicon-warning-sign" tooltip="{{'Aucun restaurateur assigné pour ce restaurant' | translate}}"></i></div>
 					<div ng-show="restaurant.restaurateur">{{restaurant.restaurateur.firstname}} {{restaurant.restaurateur.lastname}}</div>
 				</td>
 				<td class="text-right">

@@ -25,7 +25,7 @@
 				<td>{{restaurateur.firstname}}</td>
 				<td>{{restaurateur.lastname}}</td>
 				<td>
-					<div ng-show="!restaurateur.restaurant"><i class="glyphicon glyphicon-warning-sign" tooltip="Aucun restaurant assigné pour ce restaurateur"></i></div>
+					<div ng-show="!restaurateur.restaurant"><i class="glyphicon glyphicon-warning-sign" tooltip="{{'Aucun restaurant assigné pour ce restaurateur' | translate}}"></i></div>
 					<div ng-show="restaurateur.restaurant">{{restaurateur.restaurant.name}}</div>
 				</td>
 				<td class="text-right">

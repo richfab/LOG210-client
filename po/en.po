@@ -52,6 +52,14 @@ msgstr "Add"
 msgid "Annuler"
 msgstr "Cancel"
 
+#: app/views/restaurateurs/index.html
+msgid "Aucun restaurant assigné pour ce restaurateur"
+msgstr "No restaurant assigned to this owner"
+
+#: app/views/restaurants/index.html
+msgid "Aucun restaurateur assigné pour ce restaurant"
+msgstr "No restaurant owner assigned to this restaurant"
+
 #: app/views/home.html
 msgid "Bienvenue sur ETSFood"
 msgstr "Welcome to ETSFood"
@@ -85,7 +93,7 @@ msgstr "Email"
 #: app/views/restaurateurs/add-edit.html app/views/setting.html
 #: app/views/signup.html
 msgid "Date de naissance"
-msgstr "Birthdate"
+msgstr "Birthday"
 
 #: app/index.html
 msgid "Deconnexion"

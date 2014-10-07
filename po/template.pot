@@ -50,6 +50,14 @@ msgstr ""
 msgid "Annuler"
 msgstr ""
 
+#: app/views/restaurateurs/index.html
+msgid "Aucun restaurant assigné pour ce restaurateur"
+msgstr ""
+
+#: app/views/restaurants/index.html
+msgid "Aucun restaurateur assigné pour ce restaurant"
+msgstr ""
+
 #: app/views/home.html
 msgid "Bienvenue sur ETSFood"
 msgstr ""
