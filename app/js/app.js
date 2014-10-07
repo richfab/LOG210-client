@@ -16,14 +16,21 @@ var myApp = angular.module('myApp', [
 myApp.run(['$rootScope', '$modal', '$cookieStore', "$location", "gettextCatalog",
 	function ($rootScope, $modal, $cookieStore, $location, gettextCatalog) {
 
-		// Set language
-		gettextCatalog.setCurrentLanguage('en');
-
 		// Set current menu
 		$rootScope.currentMenu = 'home';
 
 		// Check if a user is connected from the cookies
 		$rootScope.currentUser = $cookieStore.get("currentuser");
+
+		// Set language
+		gettextCatalog.setCurrentLanguage('en');
+
+		$rootScope.currentLanguage = 'en';
+		// Change language
+		$rootScope.changeLanguage = function() {
+			$rootScope.currentLanguage = ($rootScope.currentLanguage == 'en' ? 'fr' : 'en');
+			gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
+		}
 
 		// Signup modal
 		$rootScope.signup = function () {
