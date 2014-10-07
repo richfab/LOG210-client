@@ -11,20 +11,14 @@ module.exports = function(grunt) {
 				src: 'src/<%= pkg.name %>.js',
 				dest: 'build/<%= pkg.name %>.min.js'
 			}
-		}
-	});
-
-	grunt.initConfig({
+		},
 		nggettext_extract: {
 			pot: {
 				files: {
-					'po/template.pot': ['app/views/**/*.html']
+					'po/template.pot': ['app/**/*.html']
 				}
 			},
 		},
-	})
-
-	grunt.initConfig({
 		nggettext_compile: {
 			all: {
 				options: {
@@ -34,8 +28,8 @@ module.exports = function(grunt) {
 					'app/js/translations.js': ['po/*.po']
 				}
 			},
-		},
-	})
+		}
+	});
 
 	// Load the plugin that provides the "uglify" task.
 	grunt.loadNpmTasks('grunt-contrib-uglify');
