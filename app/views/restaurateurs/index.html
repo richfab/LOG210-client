@@ -1,9 +1,9 @@
 <div class="container">
 
 	<nav class="navbar navbar-default">
-		<div class="navbar-brand">Restaurateurs</div>
+		<div class="navbar-brand" translate>Restaurateurs</div>
 		<div class="navbar-brand navbar-right">
-			<a ng-click="add()" tooltip="Ajouter">
+			<a ng-click="add()" tooltip="{{'Ajouter' | translate}}">
 				<i class="glyphicon glyphicon-plus clickable"></i>
 			</a>
 		</div>
@@ -13,10 +13,10 @@
 		<thead>
 			<tr>
 				<th>#</th>
-				<th>Nom</th>
-				<th>Prénom</th>
-				<th>Restaurant</th>
-				<th class="text-right">Actions</th>
+				<th translate>Nom</th>
+				<th translate>Prénom</th>
+				<th translate>Restaurant</th>
+				<th class="text-right" translate>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,8 +29,8 @@
 					<div ng-show="restaurateur.restaurant">{{restaurateur.restaurant.name}}</div>
 				</td>
 				<td class="text-right">
-					<a ng-click="edit(restaurateur)" tooltip="Modifier"><i class="glyphicon glyphicon-pencil clickable"></i></a>
-					<a ng-click="remove(restaurateur)" tooltip="Supprimer"><i class="glyphicon glyphicon-remove clickable"></i></a>
+					<a ng-click="edit(restaurateur)" tooltip="{{'Modifier' | translate}}"><i class="glyphicon glyphicon-pencil clickable"></i></a>
+					<a ng-click="remove(restaurateur)" tooltip="{{'Supprimer' | translate}}"><i class="glyphicon glyphicon-remove clickable"></i></a>
 				</td>
 			</tr>
 		</tbody>

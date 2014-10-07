@@ -1,5 +1,5 @@
 <div class="modal-header">
-	<h3 class="modal-title">Restaurant '{{restaurant.name}}'</h3>
+    <h3 class="modal-title"><span translate>Restaurant</span> '{{restaurant.name}}'</h3>
 </div>
 
 <form name="restaurantForm">
@@ -8,43 +8,43 @@
 		<alert-message alert-data="dataAlert"></alert-message>
 
 		<div class="control-group">
-			<label class="control-label">Nom *</label>
+            <label class="control-label"><span translate>Nom</span> *</label>
 			<div class="controls">
 				<input class="form-control" type="text" name="name" ng-model="restaurant.name" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Téléphone</label>
+			<label class="control-label" translate>Téléphone</label>
 			<div class="controls">
 				<input class="form-control" type="text" name="phone" ng-model="restaurant.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
-				<span ng-show="restaurantForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
+				<span ng-show="restaurantForm.phone.$error.pattern" translate>Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Adresse</label>
+			<label class="control-label" translate>Adresse</label>
 			<div class="controls">
 				<input class="form-control" type="text" name="address" ng-model="restaurant.address">
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Code postal</label>
+			<label class="control-label" translate>Code postal</label>
 			<div class="controls">
 				<input class="form-control" type="text" name="zipcode" ng-model="restaurant.zipcode">
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Ville</label>
+			<label class="control-label" translate>Ville</label>
 			<div class="controls">
 				<input class="form-control" type="text" name="city" ng-model="restaurant.city">
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Pays</label>
+			<label class="control-label" translate>Pays</label>
 			<div class="controls">
 				<select class="form-control" type="text" ng-model="restaurant.country_id" ng-options="country.id as country.name for country in countries">
 					<option value="">--</option>
@@ -53,7 +53,7 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Restaurateur</label>
+			<label class="control-label" translate>Restaurateur</label>
 			<div class="controls">
 				<select class="form-control" type="text" name="firstname" ng-model="restaurant.restaurateur_id" ng-options="r.id as r.lastname + ' ' + r.firstname for r in restaurateurs">
 					<option value="">--</option>
@@ -63,8 +63,8 @@
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="save()" ng-disabled="restaurantForm.$invalid">Valider</button>
-		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
+		<button class="btn btn-primary" ng-click="save()" ng-disabled="restaurantForm.$invalid" translate>Valider</button>
+		<button class="btn btn-default" ng-click="cancel()" translate>Annuler</button>
 	</div>
 
 </form>
