@@ -13,8 +13,8 @@ var myApp = angular.module('myApp', [
 ]);
 
 // Run when application is launched
-myApp.run(['$rootScope', '$modal', '$cookieStore', "$location", "gettextCatalog",
-	function ($rootScope, $modal, $cookieStore, $location, gettextCatalog) {
+myApp.run(['$rootScope', '$modal', '$cookieStore', "$location", "gettextCatalog", 'Restangular',
+	function ($rootScope, $modal, $cookieStore, $location, gettextCatalog, Restangular) {
 
 		// Set current menu
 		$rootScope.currentMenu = 'home';
@@ -40,24 +40,25 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location", "gettextCatalog"
 			});
 		};
 
-		// Login modal
-		$rootScope.login = function (user) {
-			$modal.open({
-				templateUrl: 'views/login.html',
-				controller: 'LoginCtrl',
-				size: "sm",
-				resolve: {
-					user: function () {
-						return user;
-					}
-				}
-			}).result.then(function (result) {
-				if (result === true) {
-					$rootScope.notifyMessage("Connexion effectuée.", "info");
-				}
-			});
+		// Login
+        // Fix input element click problem
+        $('#signInDropdown input, #signInDropdown label, #signInDropdown button').click(function(e) {
+            e.stopPropagation();
+        });
+        
+		$rootScope.login = function () {
+	        Restangular.all('accesstokens').post($rootScope.user).then(function (result) {
+				$rootScope.currentUser = result;
+				$cookieStore.put("currentuser", $rootScope.currentUser);
+                $rootScope.dataAlert = {};
+	        }, function (result) {
+                $rootScope.dataAlert = {
+                    message: result.data,
+                    type: 'danger'
+                };
+	        });
 		};
-
+        
 		// Logout
 		$rootScope.logout = function () {
 			$rootScope.notifyMessage("Deconnexion effectuée", "info");
