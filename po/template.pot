@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: app/views/home.html
+msgid "Bienvenue sur ETSFood"
+msgstr ""
+
+#: app/views/home.html
+msgid "Une brève description de l'application."
+msgstr ""
+
+#: app/views/home.html
+msgid "Une phrase punch!"
+msgstr ""

@@ -8,12 +8,16 @@ var myApp = angular.module('myApp', [
 	'ngRoute',
 	'restangular',
 	'ui.bootstrap',
-	'ngCookies'
+	'ngCookies',
+	'gettext'
 ]);
 
 // Run when application is launched
-myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
-	function ($rootScope, $modal, $cookieStore, $location) {
+myApp.run(['$rootScope', '$modal', '$cookieStore', "$location", "gettextCatalog",
+	function ($rootScope, $modal, $cookieStore, $location, gettextCatalog) {
+
+		// Set language
+		gettextCatalog.setCurrentLanguage('en');
 
 		// Set current menu
 		$rootScope.currentMenu = 'home';
