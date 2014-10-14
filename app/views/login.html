@@ -1,5 +1,5 @@
 <div class="modal-header">
-	<h3 class="modal-title">Formulaire d'authentification</h3>
+	<h3 class="modal-title" translate>Formulaire d'authentification</h3>
 </div>
 
 <form name="authentificationForm">
@@ -9,14 +9,14 @@
 		<alert-message alert-data="dataAlert"></alert-message>
 
 		<div class="control-group">
-			<label class="control-label">Courriel *</label>
+            <label class="control-label"><span translate>Courriel</span> *</label>
 			<div class="controls">
 				<input class="form-control" type="text" ng-model="user.mail" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Mot de passe *</label>
+            <label class="control-label"><span translate>Mot de passe</span> *</label>
 			<div class="controls">
 				<input class="form-control" type="password" ng-model="user.password" required>
 			</div>
@@ -24,8 +24,8 @@
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="login()" ng-disabled="authentificationForm.$invalid">Se connecter</button>
-		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
+		<button class="btn btn-primary" ng-click="login()" ng-disabled="authentificationForm.$invalid" translate>Se connecter</button>
+		<button class="btn btn-default" ng-click="cancel()" translate>Annuler</button>
 	</div>
 
 </form>

@@ -9,25 +9,25 @@
             <div class="col col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Informations générales</h3>
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> <span translate>Informations générales</span></h3>
                     </div>
                     <div class="panel-body">
                         <div class="control-group">
-                            <label class="control-label">Nom *</label>
+                            <label class="control-label"><span translate>Nom</span> *</label>
                             <div class="controls">
                                 <input class="form-control" type="text" ng-model="user.lastname" placeholder="Nom" required>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label">Prénom *</label>
+                            <label class="control-label"><span translate>Prénom</span> *</label>
                             <div class="controls">
                                 <input class="form-control" type="text" ng-model="user.firstname" placeholder="Prénom" required>
                             </div>
                         </div>
 
 						<div class="control-group">
-							<label class="control-label">Date de naissance</label>
+                            <label class="control-label"><span translate>Date de naissance</span></label>
 							<div class="controls">
 								<p class="input-group">
 									<input type="text" class="form-control" ng-click="open($event)" datepicker-popup="dd.MM.yyyy" ng-model="user.birthdate" is-open="opened" datepicker-options="dateOptions" close-text="Fermer"/>
@@ -44,18 +44,18 @@
             <div class="col col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><span class="glyphicon glyphicon-earphone"></span> Contact</h3>
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-earphone"></span> <span translate>Contact</span></h3>
                     </div>
                     <div class="panel-body">
                         <div class="control-group">
-                            <label class="control-label">Téléphone *</label>
+                            <label class="control-label"><span translate>Téléphone</span> *</label>
                             <div class="controls">
                                 <input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/" placeholder="ex: 514-123-4567" required>
-                                <span ng-show="editProfilForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
+                                <span ng-show="editProfilForm.phone.$error.pattern" translate>Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label">Courriel</label>
+                            <label class="control-label" translate>Courriel</label>
                             <div class="controls">
                                 <input class="form-control" type="text" ng-model="user.mail" ng-disabled="true">
                             </div>
@@ -71,32 +71,32 @@
             <div class="col col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><span class="glyphicon glyphicon-map-marker"></span> Adresse</h3>
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-map-marker"></span> <span translate>Adresse</span></h3>
                     </div>
                     <div class="panel-body">
                         <div class="control-group">
-                            <label class="control-label">Adresse *</label>
+                            <label class="control-label"><span translate>Adresse</span> *</label>
                             <div class="controls">
                                 <input class="form-control" type="text" ng-model="user.address" required>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label">Ville *</label>
+                            <label class="control-label"><span translate>Ville</span> *</label>
                             <div class="controls">
                                 <input class="form-control" type="text" ng-model="user.city" required>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label">Code postal *</label>
+                            <label class="control-label"><span translate>Code postal</span> *</label>
                             <div class="controls">
                                 <input class="form-control" type="text" ng-model="user.zipcode" required>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label">Pays *</label>
+                            <label class="control-label"><span translate>Pays</span> *</label>
                             <select class="form-control" type="text" ng-model="user.country_id" ng-options="country.id as country.name for country in countries" required>
                                 <option value="">--</option>
                             </select>
@@ -107,21 +107,21 @@
             <div class="col col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><span class="glyphicon glyphicon-lock"></span> Mot de passe</h3>
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-lock"></span> <span translate>Mot de passe</span></h3>
                     </div>
                     <div class="panel-body">
                         <div class="control-group">
-                            <label class="control-label">Mot de passe *</label>
+                            <label class="control-label"><span translate>Mot de passe</span> *</label>
                             <div class="controls">
                                 <input class="form-control" type="password" ng-model="user.password" required>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label">Répétez mot de passe *</label>
+                            <label class="control-label"><span translate>Répétez mot de passe</span> *</label>
                             <div class="controls">
                                 <input class="form-control" type="password" name="password_secure" ng-model="user.password_secure" ng-match="user.password" required>
-                                <span ng-show="editProfilForm.password_secure.$error.match">Le mot de passe doit être le même qu'au précédent champ</span>
+                                <span ng-show="editProfilForm.password_secure.$error.match" translate>Le mot de passe doit être le même qu'au précédent champ</span>
                             </div>
                         </div>
                     </div>
@@ -131,8 +131,8 @@
         </div>
 
         <div class="validate-form">
-            <button class="btn btn-primary" ng-click="edit()" ng-disabled="editProfilForm.$invalid">Valider</button>
-            <button class="btn btn-danger align-left" ng-click="remove(user)">Supprimer profil</button>
+            <button class="btn btn-primary" ng-click="edit()" ng-disabled="editProfilForm.$invalid" translate>Valider</button>
+            <button class="btn btn-danger align-left" ng-click="remove(user)" translate>Supprimer profil</button>
         </div>
 
     </form>
