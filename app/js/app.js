@@ -23,26 +23,29 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 		$rootScope.currentUser = $cookieStore.get("currentuser");
 
 		// Set language
-		if ($rootScope.currentUser == undefined) {
-			gettextCatalog.setCurrentLanguage('fr');
-		}
+		$rootScope.currentLanguage = ($rootScope.currentUser == undefined ? 'fr' : $rootScope.currentUser.language);
+		gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
 
 		// Change language
 		$rootScope.changeLanguage = function() {
+
 			$rootScope.currentLanguage = ($rootScope.currentLanguage == 'en' ? 'fr' : 'en');
 			gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
 
-			var user = {language: $rootScope.currentLanguage};
+			if($rootScope.currentUser) {
+				$rootScope.currentUser.language = $rootScope.currentLanguage;
+				var user = {language: $rootScope.currentLanguage};
+				Restangular.one($rootScope.currentUser.type + 's', $rootScope.currentUser.id).put(user).then(function (result) {
+					$rootScope.currentUser = result;
+					$cookieStore.put("currentuser", $rootScope.currentUser);
+				}, function (result) {
+					$scope.dataAlert = {
+						message: result.data,
+						type: 'danger'
+					};
+				});
+			}
 
-			Restangular.one($rootScope.currentUser.type + 's', $rootScope.currentUser.id).put(user).then(function (result) {
-				$rootScope.currentUser = result;
-				$cookieStore.put("currentuser", $rootScope.currentUser);
-			}, function (result) {
-				$scope.dataAlert = {
-					message: result.data,
-					type: 'danger'
-				};
-			});
 		}
 
 		// Signup modal
@@ -58,13 +61,17 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
         $('#signInDropdown input, #signInDropdown label, #signInDropdown button').click(function(e) {
             e.stopPropagation();
         });
-
 		$rootScope.login = function () {
 	        Restangular.all('accesstokens').post($rootScope.user).then(function (result) {
+
+				// Get current user and set cookie
 				$rootScope.currentUser = result;
 				$cookieStore.put("currentuser", $rootScope.currentUser);
+
 				// Set language
-				gettextCatalog.setCurrentLanguage($rootScope.currentUser.language);
+				$rootScope.currentLanguage = $rootScope.currentUser.language;
+				gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
+
 				$rootScope.notifyMessage("Connexion effectuée.", "info");
 	        }, function (result) {
                 $rootScope.notifyMessage(result.data, "danger");
@@ -75,7 +82,7 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 		$rootScope.logout = function () {
 	        Restangular.all('accesstokens').remove().then(function (result) {
 				$rootScope.notifyMessage("Deconnexion effectuée", "info");
-				$rootScope.currentUser = null;
+				$rootScope.currentUser = undefined;
 				$cookieStore.remove("currentuser");
 				$cookieStore.remove("session");
 				$location.path("/");
