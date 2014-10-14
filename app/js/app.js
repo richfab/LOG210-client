@@ -84,7 +84,8 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 	        Restangular.all('accesstokens').post($rootScope.user).then(function (result) {
 				$rootScope.currentUser = result;
 				$cookieStore.put("currentuser", $rootScope.currentUser);
-                $rootScope.dataAlert = {};
+				// Set language
+				gettextCatalog.setCurrentLanguage($rootScope.currentUser.language);
 	        }, function (result) {
                 $rootScope.dataAlert = {
                     message: result.data,
