@@ -53,27 +53,6 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 			});
 		};
 
-
-		// Login modal
-		// $rootScope.login = function (user) {
-		// 	$modal.open({
-		// 		templateUrl: 'views/login.html',
-		// 		controller: 'LoginCtrl',
-		// 		size: "sm",
-		// 		resolve: {
-		// 			user: function () {
-		// 				return user;
-		// 			}
-		// 		}
-		// 	}).result.then(function (result) {
-		// 		if (result === true) {
-		// 			$rootScope.notifyMessage("Connexion effectuée.", "info");
-		// 		}
-		// 		// Set language
-		// 		gettextCatalog.setCurrentLanguage($rootScope.currentUser.language);
-		// 	});
-		// };
-
 		// Login
         // Fix input element click problem
         $('#signInDropdown input, #signInDropdown label, #signInDropdown button').click(function(e) {
@@ -86,15 +65,11 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 				$cookieStore.put("currentuser", $rootScope.currentUser);
 				// Set language
 				gettextCatalog.setCurrentLanguage($rootScope.currentUser.language);
+				$rootScope.notifyMessage("Connexion effectuée.", "info");
 	        }, function (result) {
-                $rootScope.dataAlert = {
-                    message: result.data,
-                    type: 'danger'
-                };
+                $rootScope.notifyMessage(result.data, "danger");
 	        });
 		};
-
-
 
 		// Logout
 		$rootScope.logout = function () {
