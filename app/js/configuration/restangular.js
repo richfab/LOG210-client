@@ -6,6 +6,7 @@
 // Configuration of Restangular
 myApp.config(function (RestangularProvider) {
 	RestangularProvider.setBaseUrl('http://localhost:5000');
+	RestangularProvider.setDefaultHttpFields({withCredentials: true});
     RestangularProvider.setResponseExtractor(function (response, operation) {
         function convert_date_field(object) {
             // Find fields containing 'date' to convert in javascript Date object

@@ -3,8 +3,8 @@
 
 'use strict';
 
-myApp.controller('LoginCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore', 'Restangular', 'user',
-	function ($rootScope, $scope, $modalInstance, $cookieStore, Restangular, user) {
+myApp.controller('LoginCtrl', ['$rootScope', '$http', '$scope', '$modalInstance', '$cookieStore', 'Restangular', 'user',
+	function ($rootScope, $http, $scope, $modalInstance, $cookieStore, Restangular, user) {
 
 		// Get user from signup page
 		if (user != null) {
@@ -15,9 +15,11 @@ myApp.controller('LoginCtrl', ['$rootScope', '$scope', '$modalInstance', '$cooki
 
 		// Login
 		$scope.login = function () {
+
 	        Restangular.all('accesstokens').post($scope.user).then(function (result) {
 				$rootScope.currentUser = result;
 				$cookieStore.put("currentuser", $rootScope.currentUser);
+
 				$modalInstance.close(true);
 	        }, function (result) {
                 $scope.dataAlert = {

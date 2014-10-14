@@ -13,8 +13,8 @@ var myApp = angular.module('myApp', [
 ]);
 
 // Run when application is launched
-myApp.run(['$rootScope', '$modal', '$cookieStore', "$location", "gettextCatalog",
-	function ($rootScope, $modal, $cookieStore, $location, gettextCatalog) {
+myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettextCatalog", "Restangular",
+	function ($rootScope, $modal, $http, $cookieStore, $location, gettextCatalog, Restangular) {
 
 		// Set current menu
 		$rootScope.currentMenu = 'home';
@@ -23,13 +23,26 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location", "gettextCatalog"
 		$rootScope.currentUser = $cookieStore.get("currentuser");
 
 		// Set language
-		gettextCatalog.setCurrentLanguage('en');
+		if ($rootScope.currentUser == undefined) {
+			gettextCatalog.setCurrentLanguage('fr');
+		}
 
-		$rootScope.currentLanguage = 'en';
 		// Change language
 		$rootScope.changeLanguage = function() {
 			$rootScope.currentLanguage = ($rootScope.currentLanguage == 'en' ? 'fr' : 'en');
 			gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
+
+			var user = {language: $rootScope.currentLanguage};
+
+			Restangular.one($rootScope.currentUser.type + 's', $rootScope.currentUser.id).put(user).then(function (result) {
+				$rootScope.currentUser = result;
+				$cookieStore.put("currentuser", $rootScope.currentUser);
+			}, function (result) {
+				$scope.dataAlert = {
+					message: result.data,
+					type: 'danger'
+				};
+			});
 		}
 
 		// Signup modal
@@ -55,15 +68,22 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location", "gettextCatalog"
 				if (result === true) {
 					$rootScope.notifyMessage("Connexion effectuée.", "info");
 				}
+				// Set language
+				gettextCatalog.setCurrentLanguage($rootScope.currentUser.language);
 			});
 		};
 
 		// Logout
 		$rootScope.logout = function () {
-			$rootScope.notifyMessage("Deconnexion effectuée", "info");
-			$rootScope.currentUser = null;
-			$cookieStore.remove("currentuser");
-			$location.path("/");
+	        Restangular.all('accesstokens').remove().then(function (result) {
+				$rootScope.notifyMessage("Deconnexion effectuée", "info");
+				$rootScope.currentUser = null;
+				$cookieStore.remove("currentuser");
+				$cookieStore.remove("session");
+				$location.path("/");
+	        }, function (result) {
+				$rootScope.notifyMessage("Un problème est survenu lors de la déconnexion", "danger");
+	        });
 		};
 
 		// Redirection
