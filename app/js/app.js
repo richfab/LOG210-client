@@ -23,13 +23,19 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 		$rootScope.currentUser = $cookieStore.get("currentuser");
 
 		// Set language
-		$rootScope.currentLanguage = ($rootScope.currentUser == undefined ? 'fr' : $rootScope.currentUser.language);
-		gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
+        if($rootScope.currentUser) {
+            $rootScope.currentLanguage = $rootScope.currentUser.language;
+        } else {
+            //if user is not connected
+            $rootScope.currentLanguage = ($cookieStore.get('language') == undefined ? 'fr' : $cookieStore.get('language'));
+        }
+        gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
 
 		// Change language
-		$rootScope.changeLanguage = function() {
+		$rootScope.changeLanguage = function(language) {
 
-			$rootScope.currentLanguage = ($rootScope.currentLanguage == 'en' ? 'fr' : 'en');
+            if($rootScope.currentLanguage == language) return;
+			$rootScope.currentLanguage = $rootScope.currentLanguage = language;
 			gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
 
 			if($rootScope.currentUser) {
@@ -44,9 +50,11 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 						type: 'danger'
 					};
 				});
-			}
+			} else {
+                $cookieStore.put("language", language);
+            }
 
-		}
+		};
 
 		// Signup modal
 		$rootScope.signup = function () {
@@ -85,6 +93,7 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 				$rootScope.currentUser = undefined;
 				$cookieStore.remove("currentuser");
 				$cookieStore.remove("session");
+                delete $rootScope.user;
 				$location.path("/");
 	        }, function (result) {
 				$rootScope.notifyMessage("Un problème est survenu lors de la déconnexion", "danger");

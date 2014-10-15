@@ -26,6 +26,7 @@ myApp.controller('SignupCtrl', ['$rootScope', '$scope', '$modalInstance', '$cook
 			}
 	        Restangular.all('clients').post($scope.user).then(function (result) {
 				$scope.completed = true;
+                $rootScope.user = $scope.user;
 	        }, function (result) {
                 $scope.dataAlert = {
                     message: result.data,
