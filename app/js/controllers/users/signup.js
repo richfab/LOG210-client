@@ -5,9 +5,11 @@
 
 myApp.controller('SignupCtrl', ['$rootScope', '$scope', '$modalInstance', '$cookieStore', 'Restangular',
 	function AlertCtrl($rootScope, $scope, $modalInstance, $cookieStore, Restangular) {
+        
+        $scope.user = {};
 
 		//for the tests
-        //$scope.user = {firstname : "Firstname", lastname : "Lastname", phone : "123-456-7890", address : "Adresse", city : "City", zipcode : "123456", country_id : 1, mail : "email" + Date.now() + "@em.com", password : "password", password_secure : "password"};
+//        $scope.user = {firstname : "Firstname", lastname : "Lastname", phone : "123-456-7890", address : "Adresse", city : "City", zipcode : "123456", country_id : 1, mail : "email" + Date.now() + "@em.com", password : "password", password_secure : "password"};
 		
         $scope.completed = false;
 
@@ -26,6 +28,7 @@ myApp.controller('SignupCtrl', ['$rootScope', '$scope', '$modalInstance', '$cook
 			if ($scope.user.birthdate) {
 				$scope.user.birthdate = $scope.user.birthdate.toISOString();
 			}
+            console.log($scope.user);
 	        Restangular.all('clients').post($scope.user).then(function (result) {
 				$scope.completed = true;
                 $rootScope.user = $scope.user;
