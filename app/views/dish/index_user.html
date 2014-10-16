@@ -1,0 +1,24 @@
+<div class="container">
+
+	<nav class="navbar navbar-default">
+		<div class="navbar-brand">Plats</div>
+	</nav>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Prix</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="dish in dishes">
+				<td>{{dish.name}}</td>
+				<td>{{dish.description}}</td>
+				<td>{{dish.price}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

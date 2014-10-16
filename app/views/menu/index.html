@@ -1,0 +1,44 @@
+<div class="container">
+
+	<nav class="navbar navbar-default">
+		<div class="navbar-brand">Restaurants</div>
+		<div class="navbar-brand navbar-right">
+			<a ng-click="add()" tooltip="Ajouter">
+				<i class="glyphicon glyphicon-plus clickable"></i>
+			</a>
+		</div>
+	</nav>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Nom</th>
+				<th>Téléphone</th>
+				<th>Addresse</th>
+				<th>Restaurateur</th>
+				<th class="text-right">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="restaurant in restaurants">
+				<td>{{$index + 1}}</td>
+				<td>{{restaurant.name}}</td>
+				<td>{{restaurant.phone}}</td>
+				<td>{{restaurant.address}}<br/>
+					{{restaurant.zipcode}} {{restaurant.city}}<br/>
+					{{restaurant.country.name}}
+				</td>
+				<td>
+					<div ng-show="!restaurant.restaurateur"><i class="glyphicon glyphicon-warning-sign" tooltip="Aucun restaurateur assigné pour ce restaurant"></i></div>
+					<div ng-show="restaurant.restaurateur">{{restaurant.restaurateur.firstname}} {{restaurant.restaurateur.lastname}}</div>
+				</td>
+				<td class="text-right">
+					<a ng-click="edit(restaurant)" tooltip="Modifier"><i class="glyphicon glyphicon-pencil clickable"></i></a>
+					<a ng-click="remove(restaurant)" tooltip="Supprimer"><i class="glyphicon glyphicon-remove clickable"></i></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
