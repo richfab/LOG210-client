@@ -60,11 +60,12 @@
             <label class="control-label"><span translate>Date de naissance</span></label>
 			<div class="controls">
 				<p class="input-group">
-					<input type="text" class="form-control" ng-click="open($event)" datepicker-popup="dd.MM.yyyy" ng-model="user.birthdate" is-open="opened" datepicker-options="dateOptions" close-text="Fermer"/>
+					<input type="text" name="birthdate" class="form-control" ng-click="open($event)" datepicker-popup="dd.MM.yyyy" ng-model="user.birthdate" is-open="$parent.opened" datepicker-options="dateOptions" close-text="Fermer"/>
 					<span class="input-group-btn">
 						<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 					</span>
 				</p>
+				<span ng-show="signupForm.birthdate.$invalid" translate>Le format de la date est incorrect</span>
 			</div>
 		</div>
 

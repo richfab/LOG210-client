@@ -69,7 +69,10 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
         $('#signInDropdown input, #signInDropdown label, #signInDropdown button').click(function(e) {
             e.stopPropagation();
         });
-		$rootScope.login = function () {
+		$rootScope.login = function (user) {
+			if(user) {
+				$rootScope.user = user;
+			}
 	        Restangular.all('accesstokens').post($rootScope.user).then(function (result) {
 
 				// Get current user and set cookie
