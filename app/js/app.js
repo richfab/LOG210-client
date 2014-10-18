@@ -8,23 +8,53 @@ var myApp = angular.module('myApp', [
 	'ngRoute',
 	'restangular',
 	'ui.bootstrap',
-	'ngCookies'
+	'ngCookies',
+	'gettext'
 ]);
 
-// Configuration of Restangular
-myApp.config(function (RestangularProvider) {
-	RestangularProvider.setBaseUrl('http://localhost:5000');
-});
-
 // Run when application is launched
-myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
-	function ($rootScope, $modal, $cookieStore, $location) {
+myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettextCatalog", "Restangular",
+	function ($rootScope, $modal, $http, $cookieStore, $location, gettextCatalog, Restangular) {
 
 		// Set current menu
 		$rootScope.currentMenu = 'home';
 
 		// Check if a user is connected from the cookies
 		$rootScope.currentUser = $cookieStore.get("currentuser");
+
+		// Set language
+        if($rootScope.currentUser) {
+            $rootScope.currentLanguage = $rootScope.currentUser.language;
+        } else {
+            //if user is not connected
+            $rootScope.currentLanguage = ($cookieStore.get('language') == undefined ? 'fr' : $cookieStore.get('language'));
+        }
+        gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
+
+		// Change language
+		$rootScope.changeLanguage = function(language) {
+
+            if($rootScope.currentLanguage == language) return;
+			$rootScope.currentLanguage = $rootScope.currentLanguage = language;
+			gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
+
+			if($rootScope.currentUser) {
+				$rootScope.currentUser.language = $rootScope.currentLanguage;
+				var user = {language: $rootScope.currentLanguage};
+				Restangular.one($rootScope.currentUser.type + 's', $rootScope.currentUser.id).put(user).then(function (result) {
+					$rootScope.currentUser = result;
+					$cookieStore.put("currentuser", $rootScope.currentUser);
+				}, function (result) {
+					$scope.dataAlert = {
+						message: result.data,
+						type: 'danger'
+					};
+				});
+			} else {
+                $cookieStore.put("language", language);
+            }
+
+		};
 
 		// Signup modal
 		$rootScope.signup = function () {
@@ -34,30 +64,43 @@ myApp.run(['$rootScope', '$modal', '$cookieStore', "$location",
 			});
 		};
 
-		// Login modal
+		// Login
+        // Fix input element click problem
+        $('#signInDropdown input, #signInDropdown label, #signInDropdown button').click(function(e) {
+            e.stopPropagation();
+        });
 		$rootScope.login = function (user) {
-			$modal.open({
-				templateUrl: 'views/login.html',
-				controller: 'LoginCtrl',
-				size: "sm",
-				resolve: {
-					user: function () {
-						return user;
-					}
-				}
-			}).result.then(function (result) {
-				if (result === true) {
-					$rootScope.notifyMessage("Connexion effectuée.", "info");
-				}
-			});
+			if(user) {
+				$rootScope.user = user;
+			}
+	        Restangular.all('accesstokens').post($rootScope.user).then(function (result) {
+
+				// Get current user and set cookie
+				$rootScope.currentUser = result;
+				$cookieStore.put("currentuser", $rootScope.currentUser);
+
+				// Set language
+				$rootScope.currentLanguage = $rootScope.currentUser.language;
+				gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
+
+				$rootScope.notifyMessage("Connexion effectuée.", "info");
+	        }, function (result) {
+                $rootScope.notifyMessage(result.data, "danger");
+	        });
 		};
 
 		// Logout
 		$rootScope.logout = function () {
-			$rootScope.notifyMessage("Deconnexion effectuée", "info");
-			$rootScope.currentUser = null;
-			$cookieStore.remove("currentuser");
-			$location.path("/");
+	        Restangular.all('accesstokens').remove().then(function (result) {
+				$rootScope.notifyMessage("Deconnexion effectuée", "info");
+				$rootScope.currentUser = undefined;
+				$cookieStore.remove("currentuser");
+				$cookieStore.remove("session");
+                delete $rootScope.user;
+				$location.path("/");
+	        }, function (result) {
+				$rootScope.notifyMessage("Un problème est survenu lors de la déconnexion", "danger");
+	        });
 		};
 
 		// Redirection

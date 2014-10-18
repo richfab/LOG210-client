@@ -1,0 +1,279 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: app/index.html
+msgid "A propos"
+msgstr ""
+
+#: app/views/about.html
+msgid "ABOUT PAGE"
+msgstr ""
+
+#: app/index.html
+msgid "Accueil"
+msgstr ""
+
+#: app/views/restaurants/index.html
+#: app/views/restaurateurs/index.html
+msgid "Actions"
+msgstr ""
+
+#: app/views/restaurants/index.html
+msgid "Addresse"
+msgstr ""
+
+#: app/index.html
+msgid "Administration"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurants/index_user.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Adresse"
+msgstr ""
+
+#: app/views/restaurants/index.html
+#: app/views/restaurateurs/index.html
+msgid "Ajouter"
+msgstr ""
+
+#: app/views/login.html
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurants/delete.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/restaurateurs/delete.html
+#: app/views/signup.html
+msgid "Annuler"
+msgstr ""
+
+#: app/views/restaurateurs/index.html
+msgid "Aucun restaurant assigné pour ce restaurateur"
+msgstr ""
+
+#: app/views/restaurants/index.html
+msgid "Aucun restaurateur assigné pour ce restaurant"
+msgstr ""
+
+#: app/views/home.html
+msgid "Bienvenue sur ETSFood"
+msgstr ""
+
+#: app/views/contact.html
+msgid "CONTACT PAGE"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Code postal"
+msgstr ""
+
+#: app/views/signup.html
+msgid "Connectez-vous"
+msgstr ""
+
+#: app/index.html
+msgid "Connexion"
+msgstr ""
+
+#: app/index.html
+#: app/views/setting.html
+msgid "Contact"
+msgstr ""
+
+#: app/views/login.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Courriel"
+msgstr ""
+
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Date de naissance"
+msgstr ""
+
+#: app/index.html
+msgid "Deconnexion"
+msgstr ""
+
+#: app/index.html
+msgid "English"
+msgstr ""
+
+#: app/views/restaurants/delete.html
+msgid "Etes-vous sur de vouloir supprimer ce restaurant ?"
+msgstr ""
+
+#: app/views/restaurateurs/delete.html
+msgid "Etes-vous sur de vouloir supprimer ce restaurateur ?"
+msgstr ""
+
+#: app/views/signup.html
+msgid "Fermer"
+msgstr ""
+
+#: app/views/login.html
+msgid "Formulaire d'authentification"
+msgstr ""
+
+#: app/views/setting.html
+msgid "Informations générales"
+msgstr ""
+
+#: app/index.html
+#: app/views/signup.html
+msgid "Inscription"
+msgstr ""
+
+#: app/views/signup.html
+msgid "Inscription réussite !"
+msgstr ""
+
+#: app/views/restaurateurs/add-edit.html
+#: app/views/signup.html
+msgid "Le format de l'adresse mail est incorrect"
+msgstr ""
+
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Le mot de passe doit être le même qu'au précédent champ"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Le numéro de téléphone doit être de la forme xxx-xxx-xxxx"
+msgstr ""
+
+#: app/views/restaurants/index.html
+#: app/views/restaurateurs/index.html
+msgid "Modifier"
+msgstr ""
+
+#: app/views/login.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Mot de passe"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurants/index.html
+#: app/views/restaurants/index_user.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/restaurateurs/index.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Nom"
+msgstr ""
+
+#: app/index.html
+msgid "Paramètres"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Pays"
+msgstr ""
+
+#: app/views/restaurateurs/add-edit.html
+#: app/views/restaurateurs/index.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Prénom"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/restaurateurs/index.html
+msgid "Restaurant"
+msgstr ""
+
+#: app/index.html
+#: app/views/restaurants/index.html
+#: app/views/restaurants/index_user.html
+msgid "Restaurants"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurants/index.html
+#: app/views/restaurateurs/add-edit.html
+msgid "Restaurateur"
+msgstr ""
+
+#: app/index.html
+#: app/views/restaurateurs/index.html
+msgid "Restaurateurs"
+msgstr ""
+
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Répétez mot de passe"
+msgstr ""
+
+#: app/views/signup.html
+msgid "S'inscrire"
+msgstr ""
+
+#: app/views/login.html
+msgid "Se connecter"
+msgstr ""
+
+#: app/views/restaurants/delete.html
+msgid "Suppresion du restaurant"
+msgstr ""
+
+#: app/views/restaurateurs/delete.html
+msgid "Suppresion du restaurateur"
+msgstr ""
+
+#: app/views/restaurants/delete.html
+#: app/views/restaurants/index.html
+#: app/views/restaurateurs/delete.html
+#: app/views/restaurateurs/index.html
+msgid "Supprimer"
+msgstr ""
+
+#: app/views/setting.html
+msgid "Supprimer profil"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurants/index.html
+#: app/views/restaurants/index_user.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Téléphone"
+msgstr ""
+
+#: app/views/home.html
+msgid "Une brève description de l'application."
+msgstr ""
+
+#: app/views/home.html
+msgid "Une phrase punch!"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+msgid "Valider"
+msgstr ""
+
+#: app/views/restaurants/add-edit.html
+#: app/views/restaurateurs/add-edit.html
+#: app/views/setting.html
+#: app/views/signup.html
+msgid "Ville"
+msgstr ""

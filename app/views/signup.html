@@ -1,24 +1,24 @@
 <div class="modal-header">
-	<h3 class="modal-title" ng-show="!completed">Inscription</h3>
-	<h3 class="modal-title" ng-show="completed">Inscription réussite !</h3>
+	<h3 class="modal-title" ng-show="!completed" translate>Inscription</h3>
+	<h3 class="modal-title" ng-show="completed" translate>Inscription réussite !</h3>
 </div>
 
 <div ng-show="completed">
 	<div class="modal-body">
 		<div class="row">
-			<div class="col-md-3 text-right"><b>Nom</b></div>
+            <div class="col-md-3 text-right"><b><span translate>Nom</span></b></div>
 			<div class="col-md-9">{{user.firstname}}</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 text-right"><b>Prénom</b></div>
+            <div class="col-md-3 text-right"><b><span translate>Prénom</span></b></div>
 			<div class="col-md-9">{{user.lastname}}</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 text-right"><b>Téléphone</b></div>
+            <div class="col-md-3 text-right"><b><span translate>Téléphone</span></b></div>
 			<div class="col-md-9">{{user.phone}}</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 text-right"><b>Adresse</b></div>
+            <div class="col-md-3 text-right"><b><span translate>Adresse</span></b></div>
 			<div class="col-md-9">
 				{{user.address}}<br>
 				{{user.city}} {{user.zipcode}}<br>
@@ -26,14 +26,14 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 text-right"><b>Identifiant</b></div>
+            <div class="col-md-3 text-right"><b><span translate>Courriel</span></b></div>
 			<div class="col-md-9">{{user.mail}}</div>
 		</div>
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="login()">Connectez-vous</button>
-		<button class="btn btn-default" ng-click="cancel()">Fermer</button>
+		<button class="btn btn-primary" ng-click="login()" translate>Connectez-vous</button>
+		<button class="btn btn-default" ng-click="cancel()" translate>Fermer</button>
 	</div>
 </div>
 
@@ -43,82 +43,95 @@
 		<alert-message alert-data="dataAlert"></alert-message>
 
 		<div class="control-group">
-			<label class="control-label">Nom *</label>
+            <label class="control-label"><span translate>Nom</span> *</label>
 			<div class="controls">
 				<input class="form-control" type="text" ng-model="user.lastname" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Prénom *</label>
+            <label class="control-label"><span translate>Prénom</span> *</label>
 			<div class="controls">
 				<input class="form-control" type="text" ng-model="user.firstname" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Téléphone</label>
+            <label class="control-label"><span translate>Date de naissance</span></label>
 			<div class="controls">
-				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
-				<span ng-show="signupForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
+				<p class="input-group">
+					<input type="text" name="birthdate" class="form-control" ng-click="open($event)" datepicker-popup="dd.MM.yyyy" ng-model="user.birthdate" is-open="$parent.opened" datepicker-options="dateOptions" close-text="Fermer"/>
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					</span>
+				</p>
+				<span ng-show="signupForm.birthdate.$invalid" translate>Le format de la date est incorrect</span>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Adresse</label>
+            <label class="control-label"><span translate>Téléphone</span> *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.address">
+				<input class="form-control" name="phone" type="text" ng-model="user.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/" required>
+				<span ng-show="signupForm.phone.$error.pattern" translate>Le numéro de téléphone doit être de la forme xxx-xxx-xxxx
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Ville</label>
+            <label class="control-label"><span translate>Adresse</span> *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.city">
+				<input class="form-control" type="text" ng-model="user.address" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Code postal</label>
+            <label class="control-label"><span translate>Ville</span> *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.zipcode">
+				<input class="form-control" type="text" ng-model="user.city" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Pays</label>
+            <label class="control-label"><span translate>Code postal</span> *</label>
 			<div class="controls">
-				<input class="form-control" type="text" ng-model="user.country">
+				<input class="form-control" type="text" ng-model="user.zipcode" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Courriel *</label>
+            <label class="control-label"><span translate>Pays</span> *</label>
+			<select class="form-control" type="text" ng-model="user.country_id" ng-options="country.id as country.name for country in countries" required>
+				<option value="">--</option>
+			</select>
+		</div>
+
+		<div class="control-group">
+            <label class="control-label"><span translate>Courriel</span> *</label>
 			<div class="controls">
 				<input class="form-control" name="mail" type="email" ng-model="user.mail" required>
-				<span ng-show="signupForm.mail.$error.email">Le format de l'adresse mail est incorrect</span>
+				<span ng-show="signupForm.mail.$error.email" translate>Le format de l'adresse mail est incorrect</span>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Mot de passe *</label>
+            <label class="control-label"><span translate>Mot de passe</span> *</label>
 			<div class="controls">
 				<input class="form-control" type="password" ng-model="user.password" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label class="control-label">Répétez mot de passe *</label>
+            <label class="control-label"><span translate>Répétez mot de passe</span> *</label>
 			<div class="controls">
 				<input class="form-control" type="password" name="password_secure" ng-model="user.password_secure" ng-match="user.password" required>
-				<span ng-show="signupForm.password_secure.$error.match">Le mot de passe doit être le même qu'au précédent champ</span>
+				<span ng-show="signupForm.password_secure.$error.match" translate>Le mot de passe doit être le même qu'au précédent champ</span>
 			</div>
 		</div>
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="signup()" ng-disabled="signupForm.$invalid">S'inscrire</button>
-		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
+		<button class="btn btn-primary" ng-click="signup()" ng-disabled="signupForm.$invalid" translate>S'inscrire</button>
+		<button class="btn btn-default" ng-click="cancel()" translate>Annuler</button>
 	</div>
 
 </form>
