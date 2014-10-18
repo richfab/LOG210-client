@@ -1,23 +1,25 @@
 <div class="container">
 
 	<nav class="navbar navbar-default">
-		<div class="navbar-brand">Restaurants</div>
+		<div class="navbar-brand" translate>Restaurants</div>
 	</nav>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Nom</th>
-				<th>Téléphone</th>
-				<th>Addresse</th>
+				<th translate>Nom</th>
+				<th translate>Type</th>
+				<th translate>Téléphone</th>
+				<th translate>Adresse</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="restaurant in restaurants">
 				<td>{{restaurant.name}}</td>
+				<td>{{restaurant.cooking_type}}</td>
 				<td>{{restaurant.phone}}</td>
 				<td>{{restaurant.address}}<br/>
-					{{restaurant.zipcode}} {{restaurant.city}}<br/>
+				 	{{restaurant.city}} {{restaurant.zipcode}}<br/>
 					{{restaurant.country.name}}
 				</td>
 			</tr>

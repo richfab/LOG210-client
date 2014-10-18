@@ -46,4 +46,15 @@ myApp.controller('RestaurateurEditCtrl', ['$scope', '$modalInstance', 'Restangul
 			$modalInstance.close();
 		};
 
+		// Datepicker functions
+		$scope.clear = function () {
+			$scope.dt = null;
+		};
+		$scope.open = function($event) {
+			$event.preventDefault();
+			$event.stopPropagation();
+
+			$scope.opened = true;
+		};
+
 	}]);
