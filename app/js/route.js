@@ -24,6 +24,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		templateUrl: 'views/restaurateurs/index.html',
 		controller: 'RestaurateurListCtrl'
 	});
+	
+	$routeProvider.when('/admin/menus', {
+		templateUrl: 'views/menu/index.html',
+		controller: 'MenuListCtrl'
+	});
 
 	$routeProvider.when('/about', {
 		templateUrl: 'views/about.html',
