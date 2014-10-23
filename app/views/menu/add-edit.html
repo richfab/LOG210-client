@@ -16,7 +16,12 @@
 
         <p>Plats</p>
 
-        <div class="well">
+        <div class="well" ng-repeat="dish in dishes">
+            <div class="row">
+                <button type="button" class="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="row">
                 <div class="col-md-8">
                     <div class="control-group">
@@ -46,7 +51,7 @@
             </div>
 
         </div>
-        <div class="clickable">
+        <div class="clickable" ng-click="addDish()">
             <span class="glyphicon glyphicon-plus"></span> Ajouter un plat
         </div>
     </div>
