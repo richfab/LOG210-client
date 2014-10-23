@@ -1,70 +1,50 @@
 <div class="modal-header">
-	<h3 class="modal-title">Menu '{{menu.name}}'</h3>
+    <h3 class="modal-title"><span translate>Menu</span> '{{menu.name}}'</h3>
 </div>
 
-<form name="restaurantForm">
-	<div class="modal-body">
+<form name="menuForm">
+    <div class="modal-body">
 
-		<alert-message alert-data="dataAlert"></alert-message>
+        <alert-message alert-data="dataAlert"></alert-message>
 
-		<div class="control-group">
-			<label class="control-label">Nom *</label>
-			<div class="controls">
-				<input class="form-control" type="text" name="name" ng-model="menu.name" required>
-			</div>
-		</div>
+        <div class="control-group">
+            <label class="control-label"><span translate>Nom</span> *</label>
+            <div class="controls">
+                <input class="form-control" type="text" name="name" ng-model="menu.name" required>
+            </div>
+        </div>
 
-		<div class="control-group">
-			<label class="control-label">Téléphone</label>
-			<div class="controls">
-				<input class="form-control" type="text" name="phone" ng-model="restaurant.phone" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/">
-				<span ng-show="restaurantForm.phone.$error.pattern">Le numéro de téléphone doit être de la forme xxx-xxx-xxxx</span>
-			</div>
-		</div>
+        <p>Plats</p>
 
-		<div class="control-group">
-			<label class="control-label">Adresse</label>
-			<div class="controls">
-				<input class="form-control" type="text" name="address" ng-model="restaurant.address">
-			</div>
-		</div>
+        <div class="well">
+            <div class="control-group">
+                <label class="control-label"><span translate>Nom</span> *</label>
+                <div class="controls">
+                    <input class="form-control" type="text" name="name" ng-model="menu.name" required>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label"><span translate>Prix</span> ($CA) *</label>
+                <div class="controls">
+                    <input class="form-control" type="number" name="price" ng-model="menu.price" ng-pattern="/^[0-9]+(\.){0,1}[0-9]{0,2}$/" required>
+                    <span ng-show="menuForm.price.$error.pattern" translate>Le prix doit être de la forme 5.90</span>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label"><span translate>Description</span> *</label>
+                <div class="controls">
+                    <input class="form-control" type="text" name="description" ng-model="menu.description" required>
+                </div>
+            </div>
 
-		<div class="control-group">
-			<label class="control-label">Code postal</label>
-			<div class="controls">
-				<input class="form-control" type="text" name="zipcode" ng-model="restaurant.zipcode">
-			</div>
-		</div>
+        </div>
+    </div>
 
-		<div class="control-group">
-			<label class="control-label">Ville</label>
-			<div class="controls">
-				<input class="form-control" type="text" name="city" ng-model="restaurant.city">
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label class="control-label">Pays</label>
-			<div class="controls">
-				<select class="form-control" type="text" ng-model="restaurant.country_id" ng-options="country.id as country.name for country in countries">
-					<option value="">--</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label class="control-label">Restaurateur</label>
-			<div class="controls">
-				<select class="form-control" type="text" name="firstname" ng-model="restaurant.restaurateur_id" ng-options="r.id as r.lastname + ' ' + r.firstname for r in restaurateurs">
-					<option value="">--</option>
-				</select>
-			</div>
-		</div>
-	</div>
-
-	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="save()" ng-disabled="restaurantForm.$invalid">Valider</button>
-		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
-	</div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="save()" ng-disabled="menuForm.$invalid" translate>Valider</button>
+        <button class="btn btn-default" ng-click="cancel()" translate>Annuler</button>
+    </div>
 
 </form>
