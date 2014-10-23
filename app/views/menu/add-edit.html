@@ -17,28 +17,37 @@
         <p>Plats</p>
 
         <div class="well">
-            <div class="control-group">
-                <label class="control-label"><span translate>Nom</span> *</label>
-                <div class="controls">
-                    <input class="form-control" type="text" name="name" ng-model="menu.name" required>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="control-group">
+                        <label class="control-label"><span translate>Nom</span> *</label>
+                        <div class="controls">
+                            <input class="form-control" type="text" name="name" ng-model="dish.name" required>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="control-group">
-                <label class="control-label"><span translate>Prix</span> ($CA) *</label>
-                <div class="controls">
-                    <input class="form-control" type="number" name="price" ng-model="menu.price" ng-pattern="/^[0-9]+(\.){0,1}[0-9]{0,2}$/" required>
-                    <span ng-show="menuForm.price.$error.pattern" translate>Le prix doit être de la forme 5.90</span>
-                </div>
-            </div>
-            
-            <div class="control-group">
-                <label class="control-label"><span translate>Description</span> *</label>
-                <div class="controls">
-                    <input class="form-control" type="text" name="description" ng-model="menu.description" required>
+
+                <div class="col-md-4">
+                    <div class="control-group">
+                        <label class="control-label"><span translate>Prix</span> ($CA) *</label>
+                        <div class="controls">
+                            <input class="form-control" type="text" name="price" ng-model="dish.price" ng-pattern="/^[0-9]+(\.){0,1}[0-9]{0,2}$/" required>
+                            <span ng-show="menuForm.price.$error.pattern" translate>Le prix doit être de la forme 5.90</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <div class="control-group">
+                <label class="control-label"><span translate>Description</span> *</label>
+                <div class="controls">
+                    <textarea class="form-control" rows="2" name="description" ng-model="dish.description" required></textarea>
+                </div>
+            </div>
+
+        </div>
+        <div class="clickable">
+            <span class="glyphicon glyphicon-plus"></span> Ajouter un plat
         </div>
     </div>
 
