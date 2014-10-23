@@ -1,9 +1,9 @@
 <div class="container">
 
 	<nav class="navbar navbar-default">
-		<div class="navbar-brand">Restaurants</div>
+		<div class="navbar-brand" translate>Menu</div>
 		<div class="navbar-brand navbar-right">
-			<a ng-click="add()" tooltip="Ajouter">
+			<a ng-click="add()" tooltip="{{'Ajouter' | translate}}">
 				<i class="glyphicon glyphicon-plus clickable"></i>
 			</a>
 		</div>
@@ -13,29 +13,21 @@
 		<thead>
 			<tr>
 				<th>#</th>
-				<th>Nom</th>
-				<th>Téléphone</th>
-				<th>Addresse</th>
-				<th>Restaurateur</th>
-				<th class="text-right">Actions</th>
+				<th translate>Nom</th>
+				<th translate>Nombre de plat</th>
+				<th translate>Prix</th>
+				<th class="text-right" translate>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="restaurant in restaurants">
+			<tr ng-repeat="menu in menus">
 				<td>{{$index + 1}}</td>
-				<td>{{restaurant.name}}</td>
-				<td>{{restaurant.phone}}</td>
-				<td>{{restaurant.address}}<br/>
-					{{restaurant.zipcode}} {{restaurant.city}}<br/>
-					{{restaurant.country.name}}
-				</td>
-				<td>
-					<div ng-show="!restaurant.restaurateur"><i class="glyphicon glyphicon-warning-sign" tooltip="Aucun restaurateur assigné pour ce restaurant"></i></div>
-					<div ng-show="restaurant.restaurateur">{{restaurant.restaurateur.firstname}} {{restaurant.restaurateur.lastname}}</div>
-				</td>
+				<td>{{menu.name}}</td>
+				<td>{{menu.dishes.length}}</td>
+				<td>{{menu.price}}</td>
 				<td class="text-right">
-					<a ng-click="edit(restaurant)" tooltip="Modifier"><i class="glyphicon glyphicon-pencil clickable"></i></a>
-					<a ng-click="remove(restaurant)" tooltip="Supprimer"><i class="glyphicon glyphicon-remove clickable"></i></a>
+					<a ng-click="edit(restaurateur)" tooltip="{{'Modifier' | translate}}"><i class="glyphicon glyphicon-pencil clickable"></i></a>
+					<a ng-click="remove(restaurateur)" tooltip="{{'Supprimer' | translate}}"><i class="glyphicon glyphicon-remove clickable"></i></a>
 				</td>
 			</tr>
 		</tbody>
