@@ -6,26 +6,28 @@
 myApp.controller('MenuListCtrl', ['$scope', 'Restangular', '$modal',
     function ($scope, Restangular, $modal) {
 		
-		$scope.menus = [{
-			name: "Menu du jour",
-			dishes: [{name: "Sauté de canard", price: 19.99, description: "Canard frais des Vosges"},
-					 {name: "Salade verte", price: 9.90, description: "Mélange de salade fraiche"},
-					 {name: "Crême brulé", price: 9.90, description: "Crême brulé au chalumeau et nappé de sucre"}]
-		}, {
-			name: "Menu du pêcheur",
-			dishes: [{name: "Salade de saumon", price: 12.99, description: "Pêché la veille"},
-					 {name: "Filet de Cabilleau", price: 29.90, description: "Pêché la veille"},
-					 {name: "Dame blanche", price: 9.90, description: "Glace à la vanille et chocolat"}]
-		}];
+        
+        $scope.updateList = function () {
+            Restangular.all("menus").getList().then(function (data) {
+                $scope.menus = data;
+            }, function (result) {
+                $scope.notifyMessage(result.data, "danger");
+            });
+        };
+        
+        $scope.updateList();
 		
 		// ============================= Functions to manage =============================
 
 		$scope.add = function () {
 			$modal.open({
-				templateUrl: 'views/menu/add-edit.html',
+				templateUrl: 'views/menus/add-edit.html',
 				controller: 'MenuAddCtrl'
 			}).result.then(function (result) {
-				
+                if (result) {
+					$scope.updateList();
+                    $scope.notifyMessage("Le menu a bien été ajouté", "success");
+				}
 			});
 		};
 		

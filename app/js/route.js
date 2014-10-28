@@ -26,7 +26,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 	});
 	
 	$routeProvider.when('/admin/menus', {
-		templateUrl: 'views/menu/index.html',
+		templateUrl: 'views/menus/index.html',
 		controller: 'MenuListCtrl'
 	});
 
