@@ -23,7 +23,9 @@ myApp.controller('MenuAddCtrl', ['$scope', '$modalInstance', 'Restangular',
             Restangular.all('menus').post($scope.menu).then(function (result) {
                 
                 //Insert each dish
-                for(var dish in $scope.dishes){
+                $scope.dishes.forEach(function(dish) {
+					dish.menu_id = result.id;
+					dish.price = parseFloat(dish.price);
                     Restangular.all('dishes').post(dish).then(function (result) {}, function (result) {
                         $scope.dataAlert = {
                             message: result.data,
@@ -31,7 +33,7 @@ myApp.controller('MenuAddCtrl', ['$scope', '$modalInstance', 'Restangular',
                         };
                         return;
                     });
-                }
+                });
                 $modalInstance.close(result);
             }, function (result) {
                 $scope.dataAlert = {
