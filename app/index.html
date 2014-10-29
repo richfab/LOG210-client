@@ -86,7 +86,7 @@
         <div id="body" ng-view></div>
 
         <div id="alert" ng-controller="AlertCtrl">
-            <alert ng-repeat="alert in alerts" type="{{alert.type}}" ng-click="closeAlert($index)">{{alert.msg}}</alert>
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" ng-click="closeAlert($index)" class="clickable">{{alert.msg}}</alert>
         </div>
 
         <div class="navbar-default" id="footer">
