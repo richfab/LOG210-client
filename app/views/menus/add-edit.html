@@ -16,9 +16,9 @@
 
         <p>Plats</p>
 
-        <div class="well" ng-repeat="dish in dishes">
+        <div class="well" ng-repeat="dish in menu.dishes">
             <div class="row">
-                <button type="button" class="close">
+                <button type="button" class="close" ng-click="removeDish(dish)">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

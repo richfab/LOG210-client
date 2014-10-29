@@ -1,16 +1,16 @@
 <div class="modal-header">
-	<h3 class="modal-title">Suppresion du restaurant '{{restaurant.name}}'</h3>
+	<h3 class="modal-title">Suppresion du menu '{{menu.name}}'</h3>
 </div>
 
-<form name="restaurantForm">
+<form name="menuForm">
 
 	<div class="modal-body">
 		<alert-message alert-data="dataAlert"></alert-message>
-		Etes-vous sur de vouloir supprimer ce restaurant ?
+		Etes-vous sur de vouloir supprimer ce menu ?
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn btn-danger" ng-click="delete()">Supprimer</button>
+		<button class="btn btn-danger" ng-click="remove()">Supprimer</button>
 		<button class="btn btn-default" ng-click="cancel()">Annuler</button>
 	</div>
 

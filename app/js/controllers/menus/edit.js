@@ -3,15 +3,18 @@
 
 'use strict';
 
-myApp.controller('MenuAddCtrl', ['$scope', '$q', '$modalInstance', 'Restangular',
-    function ($scope, $q, $modalInstance, Restangular) {
+myApp.controller('MenuEditCtrl', ['$scope', '$q', '$modalInstance', 'Restangular', 'menu',
+    function ($scope, $q, $modalInstance, Restangular, menu) {
         
-        $scope.menu = {dishes : []};
+        // Get menu from the list
+        $scope.menu = menu;
         
+        // Add a dish to the list in the menu
         $scope.addDish = function () {
             $scope.menu.dishes.push({});
         };
         
+        // Removes a dish to the list in the menu
         $scope.removeDish = function (dish) {
             var index = $scope.menu.dishes.indexOf(dish);
             if (index > -1) {
@@ -25,24 +28,22 @@ myApp.controller('MenuAddCtrl', ['$scope', '$q', '$modalInstance', 'Restangular'
         $scope.save = function () {
 
 			// Request server to add new restaurant
-            Restangular.all('menus').post($scope.menu).then(function (result) {
+            Restangular.one('menus', $scope.menu.id).put($scope.menu).then(function (result) {
                 
-                //Inserts all dishes in menu
+                // Inserts all dishes in menu
                 angular.forEach($scope.menu.dishes, function (dish) {
                     var deferred = $q.defer();
 
-                    dish.menu_id = result.id;
+                    dish.menu_id = $scope.menu.id;
 					dish.price = parseFloat(dish.price);
                     
-                    Restangular.all('dishes').post(dish).then(function (result) {
-                        deferred.resolve(result);
-                    }, function (result) {
-                        $scope.dataAlert = {
-                            message: result.data,
-                            type: 'danger'
-                        };
-                        deferred.reject(result);
-                    });
+                    // Updates dish
+                    if (dish.id) {
+                        // TODO
+                    } else {
+                        // Inserts dish
+                        // TODO
+                    }
 
                     promises.push(deferred.promise);
                 });
