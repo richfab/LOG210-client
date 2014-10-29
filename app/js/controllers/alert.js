@@ -20,7 +20,7 @@ myApp.controller('AlertCtrl', ['$rootScope', '$timeout', function AlertCtrl($roo
         $rootScope.alerts.push(alert);
         $timeout(function () {
             $rootScope.closeAlert($rootScope.alerts.indexOf(alert));
-        }, 2000);
+        }, 4000);
     };
 
 }]);
