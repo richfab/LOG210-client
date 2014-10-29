@@ -26,30 +26,42 @@ myApp.controller('MenuEditCtrl', ['$scope', '$q', '$modalInstance', 'Restangular
         
         // Save menu
         $scope.save = function () {
-
-			// Request server to add new restaurant
-            Restangular.one('menus', $scope.menu.id).put($scope.menu).then(function (result) {
+            
+            // Delete menu
+            Restangular.one('menus', $scope.menu.id).remove().then(function (result) {
                 
-                // Inserts all dishes in menu
-                angular.forEach($scope.menu.dishes, function (dish) {
-                    var deferred = $q.defer();
+                // Request server to add new menu
+                Restangular.all('menus').post($scope.menu).then(function (result) {
 
-                    dish.menu_id = $scope.menu.id;
-					dish.price = parseFloat(dish.price);
-                    
-                    // Updates dish
-                    if (dish.id) {
-                        // TODO
-                    } else {
-                        // Inserts dish
-                        // TODO
-                    }
+                    //Inserts all dishes in menu
+                    angular.forEach($scope.menu.dishes, function (dish) {
+                        var deferred = $q.defer();
 
-                    promises.push(deferred.promise);
-                });
-                
-                $q.all(promises).then(function (result) {
-                    $modalInstance.close(result);
+                        dish.menu_id = result.id;
+                        dish.price = parseFloat(dish.price);
+
+                        Restangular.all('dishes').post(dish).then(function (result) {
+                            deferred.resolve(result);
+                        }, function (result) {
+                            $scope.dataAlert = {
+                                message: result.data,
+                                type: 'danger'
+                            };
+                            deferred.reject(result);
+                        });
+
+                        promises.push(deferred.promise);
+                    });
+
+                    $q.all(promises).then(function (result) {
+                        $modalInstance.close(result);
+                    });
+
+                }, function (result) {
+                    $scope.dataAlert = {
+                        message: result.data,
+                        type: 'danger'
+                    };
                 });
                 
             }, function (result) {
@@ -58,6 +70,7 @@ myApp.controller('MenuEditCtrl', ['$scope', '$q', '$modalInstance', 'Restangular
                     type: 'danger'
                 };
             });
+
         };
         
         // Cancel restaurant adding

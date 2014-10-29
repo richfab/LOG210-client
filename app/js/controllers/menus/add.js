@@ -24,7 +24,7 @@ myApp.controller('MenuAddCtrl', ['$scope', '$q', '$modalInstance', 'Restangular'
         // Save menu
         $scope.save = function () {
 
-			// Request server to add new restaurant
+			// Request server to add new menu
             Restangular.all('menus').post($scope.menu).then(function (result) {
                 
                 //Inserts all dishes in menu

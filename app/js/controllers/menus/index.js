@@ -21,7 +21,8 @@ myApp.controller('MenuListCtrl', ['$scope', 'Restangular', '$modal',
 		$scope.add = function () {
 			$modal.open({
 				templateUrl: 'views/menus/add-edit.html',
-				controller: 'MenuAddCtrl'
+				controller: 'MenuAddCtrl',
+                size: 'lg'
 			}).result.then(function (result) {
                 if (result) {
                     $scope.updateList();
@@ -34,6 +35,7 @@ myApp.controller('MenuListCtrl', ['$scope', 'Restangular', '$modal',
 			$modal.open({
 				templateUrl: 'views/menus/add-edit.html',
 				controller: 'MenuEditCtrl',
+                size: 'lg',
 				resolve: {
 					menu: function () {
 						return Restangular.copy(menu);

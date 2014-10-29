@@ -15,16 +15,14 @@
 				<th>#</th>
 				<th translate>Nom</th>
 				<th translate>Nombre de plat</th>
-				<th translate>Prix</th>
 				<th class="text-right" translate>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="menu in menus">
+			<tr ng-repeat="menu in menus | orderBy:'name'">
 				<td>{{$index + 1}}</td>
 				<td>{{menu.name}}</td>
 				<td>{{menu.dishes.length}}</td>
-				<td>{{menu.price}}</td>
 				<td class="text-right">
 					<a ng-click="edit(menu)" tooltip="{{'Modifier' | translate}}"><i class="glyphicon glyphicon-pencil clickable"></i></a>
 					<a ng-click="remove(menu)" tooltip="{{'Supprimer' | translate}}"><i class="glyphicon glyphicon-remove clickable"></i></a>

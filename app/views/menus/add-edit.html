@@ -2,11 +2,12 @@
     <h3 class="modal-title"><span translate>Menu</span> '{{menu.name}}'</h3>
 </div>
 
-<form name="menuForm">
-    <div class="modal-body">
 
-        <alert-message alert-data="dataAlert"></alert-message>
+<div class="modal-body">
 
+    <alert-message alert-data="dataAlert"></alert-message>
+
+    <form name="menuForm">
         <div class="control-group">
             <label class="control-label"><span translate>Nom</span> *</label>
             <div class="controls">
@@ -16,49 +17,51 @@
 
         <p>Plats</p>
 
-        <div class="well" ng-repeat="dish in menu.dishes">
-            <div class="row">
-                <button type="button" class="close" ng-click="removeDish(dish)">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="control-group">
-                        <label class="control-label"><span translate>Nom</span> *</label>
-                        <div class="controls">
-                            <input class="form-control" type="text" name="name" ng-model="dish.name" required>
+        <div class="well dish-form" ng-repeat="dish in menu.dishes">
+            <ng-form name="dishForm">
+                <div class="row">
+                    <button type="button" class="close" ng-click="removeDish(dish)">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="control-group">
+                            <label class="control-label"><span translate>Nom</span> *</label>
+                            <div class="controls">
+                                <input class="form-control" type="text" name="name" ng-model="dish.name" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="control-group">
+                            <label class="control-label"><span translate>Prix</span> ($CA) *</label>
+                            <div class="controls">
+                                <input class="form-control" type="text" name="price" ng-model="dish.price" ng-pattern="/^[0-9]+(\.){0,1}[0-9]{0,2}$/" required>
+                                <span ng-show="dishForm.price.$error.pattern" translate>Le prix doit être de la forme 5.90</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="control-group">
-                        <label class="control-label"><span translate>Prix</span> ($CA) *</label>
-                        <div class="controls">
-                            <input class="form-control" type="text" name="price" ng-model="dish.price" ng-pattern="/^[0-9]+(\.){0,1}[0-9]{0,2}$/" required>
-                            <span ng-show="menuForm.price.$error.pattern" translate>Le prix doit être de la forme 5.90</span>
-                        </div>
+                <div class="control-group">
+                    <label class="control-label"><span translate>Description</span> *</label>
+                    <div class="controls">
+                        <textarea class="form-control" rows="2" name="description" ng-model="dish.description" required></textarea>
                     </div>
                 </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label"><span translate>Description</span> *</label>
-                <div class="controls">
-                    <textarea class="form-control" rows="2" name="description" ng-model="dish.description" required></textarea>
-                </div>
-            </div>
-
+                <span ng-show="dishForm.$invalid" translate>Invalide</span>
+            </ng-form>
         </div>
+        <span ng-show="dishForm.$invalid" translate>Invalides</span>
         <div class="clickable" ng-click="addDish()">
             <span class="glyphicon glyphicon-plus"></span> Ajouter un plat
         </div>
-    </div>
+    </form>
+</div>
 
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="save()" ng-disabled="menuForm.$invalid" translate>Valider</button>
-        <button class="btn btn-default" ng-click="cancel()" translate>Annuler</button>
-    </div>
-
-</form>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="save()" ng-disabled="menuForm.$invalid" translate>Valider</button>
+    <button class="btn btn-default" ng-click="cancel()" translate>Annuler</button>
+</div>
