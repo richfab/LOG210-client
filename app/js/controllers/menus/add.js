@@ -34,6 +34,14 @@ myApp.controller('MenuAddCtrl', ['$scope', '$q', '$modalInstance', 'Restangular'
                     dish.menu_id = result.id;
 					dish.price = parseFloat(dish.price);
                     
+                    if (!dish.description || dish.description === "") {
+                        console.log('pas de desc');
+                        $scope.dataAlert = {
+                            message: "Un plat a été ajouté sans description",
+                            type: 'danger'
+                        };
+                    }
+                    
                     Restangular.all('dishes').post(dish).then(function (result) {
                         deferred.resolve(result);
                     }, function (result) {

@@ -39,6 +39,11 @@ myApp.controller('MenuEditCtrl', ['$scope', '$q', '$modalInstance', 'Restangular
 
                         dish.menu_id = result.id;
                         dish.price = parseFloat(dish.price);
+                        if(!dish.description) dish.description = "";
+                        
+                        if (dish.description === "") {
+                            $scope.notifyMessage("Un plat a été ajouté sans description", "danger");
+                        }
 
                         Restangular.all('dishes').post(dish).then(function (result) {
                             deferred.resolve(result);
