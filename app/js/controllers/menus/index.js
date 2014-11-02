@@ -3,11 +3,14 @@
 
 'use strict';
 
-myApp.controller('MenuListCtrl', ['$scope', 'Restangular', '$modal',
-    function ($scope, Restangular, $modal) {
-		 
+myApp.controller('MenuListCtrl', ['$rootScope', '$scope', 'Restangular', '$modal',
+    function ($rootScope, $scope, Restangular, $modal) {
+		
+		// Set current menu
+		$rootScope.currentMenu = "my_menus";
+		
         $scope.updateList = function () {
-            Restangular.all("menus").getList().then(function (data) {
+            Restangular.one("restaurants", $rootScope.currentUser.restaurant_id).all("menus").getList().then(function (data) {
                 $scope.menus = data;
             }, function (result) {
                 $scope.notifyMessage(result.data, "danger");

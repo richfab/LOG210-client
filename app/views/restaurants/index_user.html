@@ -15,13 +15,17 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="restaurant in restaurants">
-				<td>{{restaurant.name}}</td>
+				
+				<td>
+					<a href="#/restaurants/{{restaurant.id}}/menus">{{restaurant.name}}</a>
+				</td>
 				<td>{{restaurant.cooking_type}}</td>
 				<td>{{restaurant.phone}}</td>
 				<td>{{restaurant.address}}<br/>
 				 	{{restaurant.city}} {{restaurant.zipcode}}<br/>
 					{{restaurant.country.name}}
 				</td>
+				
 			</tr>
 		</tbody>
 	</table>

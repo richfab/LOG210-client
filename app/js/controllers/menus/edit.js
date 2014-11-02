@@ -3,8 +3,8 @@
 
 'use strict';
 
-myApp.controller('MenuEditCtrl', ['$scope', '$q', '$modalInstance', 'Restangular', 'menu',
-    function ($scope, $q, $modalInstance, Restangular, menu) {
+myApp.controller('MenuEditCtrl', ['$rootScope', '$scope', '$q', '$modalInstance', 'Restangular', 'menu',
+    function ($rootScope, $scope, $q, $modalInstance, Restangular, menu) {
         
         // Get menu from the list
         $scope.menu = menu;
@@ -30,6 +30,9 @@ myApp.controller('MenuEditCtrl', ['$scope', '$q', '$modalInstance', 'Restangular
             // Delete menu
             Restangular.one('menus', $scope.menu.id).remove().then(function (result) {
                 
+				// Affect restaurant_id to the menu
+				$scope.menu.restaurant_id = $rootScope.currentUser.restaurant_id;
+				
                 // Request server to add new menu
                 Restangular.all('menus').post($scope.menu).then(function (result) {
 

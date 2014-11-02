@@ -14,42 +14,46 @@
     
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/app.css"/>
-    
-    <script src="bower_components/angular/angular.js"></script>
-    <!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
--->
 </head>
 <body>
 
     <!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
 
     <div id="container">
+		
         <!-- Navigation -->
         <div id="header">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
+					
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">ETSFood</a>
                     </div>
-
+				
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
+							
+							<!-- MENU VISITEUR-CLIENT -->
                             <li ng-class="{'active':currentMenu=='home'}"><a href="#/" translate>Accueil</a></li>
                             <li ng-class="{'active':currentMenu=='restaurants'}" ><a href="#/restaurants" translate>Restaurants</a></li>
-                            <li class="dropdown" ng-show="currentUser.type=='entrepreneur'" ng-cloak>
+							
+							<!-- MENU RESTAURATEUR -->
+							<li ng-class="{'active':currentMenu=='my_menus'}" ng-show="currentUser.type=='restaurateur' && currentUser.restaurant_id != null"><a href="#/menus" translate>Mes menus</a></li>
+
+							<!-- MENU ADMIN -->
+							<li class="dropdown" ng-show="currentUser.type=='entrepreneur'" ng-cloak>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span translate>Administration</span> <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#/admin/restaurants" translate>Restaurants</a></li>
                                     <li><a href="#/admin/restaurateurs" translate>Restaurateurs</a></li>
-                                    <li><a href="#/admin/menus" translate>Menus</a></li>
                                 </ul>
                             </li>
                         </ul>
+						
                         <ul class="nav navbar-nav navbar-right" ng-cloak>
                             <li class="dropdown" ng-show="currentUser">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.firstname}} {{currentUser.lastname}} <i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>
@@ -76,10 +80,11 @@
                                     </form>
                                 </div>
                             </li>
-
                         </ul>
+						
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
+				
             </nav>
         </div>
 
@@ -100,6 +105,7 @@
         </div>
     </div>
     
+	<script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-gettext/dist/angular-gettext.min.js"></script>
 
@@ -136,6 +142,8 @@
     <script src="js/controllers/restaurants/edit.js"></script>
     <script src="js/controllers/restaurants/delete.js"></script>
 
+    <script src="js/controllers/restaurants/menu/index.js"></script>
+	
     <script src="js/controllers/restaurateurs/index.js"></script>
     <script src="js/controllers/restaurateurs/add.js"></script>
     <script src="js/controllers/restaurateurs/edit.js"></script>

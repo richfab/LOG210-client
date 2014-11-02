@@ -3,8 +3,8 @@
 
 'use strict';
 
-myApp.controller('MenuAddCtrl', ['$scope', '$q', '$modalInstance', 'Restangular',
-    function ($scope, $q, $modalInstance, Restangular) {
+myApp.controller('MenuAddCtrl', ['$rootScope', '$scope', '$q', '$modalInstance', 'Restangular',
+    function ($rootScope, $scope, $q, $modalInstance, Restangular) {
         
         $scope.menu = {dishes : []};
         
@@ -24,6 +24,9 @@ myApp.controller('MenuAddCtrl', ['$scope', '$q', '$modalInstance', 'Restangular'
         // Save menu
         $scope.save = function () {
 
+			// Affect restaurant_id to the menu
+			$scope.menu.restaurant_id = $rootScope.currentUser.restaurant_id;
+			
 			// Request server to add new menu
             Restangular.all('menus').post($scope.menu).then(function (result) {
                 
@@ -35,7 +38,6 @@ myApp.controller('MenuAddCtrl', ['$scope', '$q', '$modalInstance', 'Restangular'
 					dish.price = parseFloat(dish.price);
                     
                     if (!dish.description || dish.description === "") {
-                        console.log('pas de desc');
                         $scope.dataAlert = {
                             message: "Un plat a été ajouté sans description",
                             type: 'danger'

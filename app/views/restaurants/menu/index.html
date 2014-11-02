@@ -1,0 +1,34 @@
+<div class="container">
+
+	<nav class="navbar navbar-default">
+		<div class="navbar-brand" style="width: 100%">
+			<a href="#/restaurants"><i class="glyphicon glyphicon-chevron-left"></i>
+			{{'Restaurants' | translate}}</a> <i class="glyphicon glyphicon-chevron-left"></i>
+			{{restaurant.name}} <i class="glyphicon glyphicon-chevron-left"></i>
+			{{'Menus' | translate}} 
+		</div>
+	</nav>
+
+	<div ng-repeat="menu in menus">
+		
+		<h4>{{menu.name}}</h4>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th translate>Plat</th>
+					<th translate>Description</th>
+					<th translate>Prix</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="dish in menu.dishes">
+					<td>{{dish.name}}</td>
+					<td>{{dish.description}}</td>
+					<td>{{dish.price}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>

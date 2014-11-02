@@ -14,6 +14,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		templateUrl: 'views/restaurants/index_user.html',
 		controller: 'RestaurantListUserCtrl'
 	});
+	
+	$routeProvider.when('/restaurants/:restaurantId/menus', {
+		templateUrl: 'views/restaurants/menu/index.html',
+		controller: 'MenuRestaurantListCtrl'
+	});
 
 	$routeProvider.when('/admin/restaurants', {
 		templateUrl: 'views/restaurants/index.html',
@@ -25,7 +30,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		controller: 'RestaurateurListCtrl'
 	});
 	
-	$routeProvider.when('/admin/menus', {
+	$routeProvider.when('/menus', {
 		templateUrl: 'views/menus/index.html',
 		controller: 'MenuListCtrl'
 	});
