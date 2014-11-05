@@ -21,4 +21,9 @@ myApp.controller('CartViewCtrl', ['$rootScope', '$scope', 'Restangular', '$cooki
 			$cookieStore.remove('cart');
 		}
 		
+		$scope.remove = function(index) {
+			$rootScope.cart.lines_order.splice(index, 1);
+			$cookieStore.put('cart', $rootScope.cart);
+		}
+		
 	}]);

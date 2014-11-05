@@ -26,14 +26,14 @@
 				<td>{{lo.quantity}}</td>
 				<td>{{lo.dish.price}}</td>
 				<td class="text-right">
-					<a ng-click="remove(restaurant)" tooltip="{{'Supprimer' | translate}}"><i class="glyphicon glyphicon-remove clickable"></i></a>
+					<a ng-click="remove($index)" tooltip="{{'Supprimer' | translate}}"><i class="glyphicon glyphicon-remove clickable"></i></a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 	
 	<div class="pull-right">
-		<h3>Total: {{total}}</h3>
+		<h3>Total: {{total | number: 2}}</h3>
 		<button class="btn btn-default" ng-click="">Valider la commande</button>
 	</div>
 

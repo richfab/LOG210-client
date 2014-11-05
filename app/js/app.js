@@ -107,6 +107,8 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 				$rootScope.currentUser = undefined;
 				$cookieStore.remove("currentuser");
 				$cookieStore.remove("session");
+				$cookieStore.remove("cart");
+				delete $rootScope.cart;
                 delete $rootScope.user;
 				$location.path("/");
 	        }, function (result) {
