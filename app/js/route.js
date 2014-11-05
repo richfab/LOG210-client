@@ -49,6 +49,16 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'views/setting.html',
         controller: 'EditProfilCtrl'
     });
+	
+    $routeProvider.when('/cart', {
+        templateUrl: 'views/cart/index.html',
+        controller: 'CartViewCtrl'
+    });
+	
+    $routeProvider.when('/orders', {
+        templateUrl: 'views/orders/index.html',
+        controller: 'OrderViewCtrl'
+    });
 
 	$routeProvider.otherwise({redirectTo: '/home'});
 

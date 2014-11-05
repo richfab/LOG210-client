@@ -52,20 +52,32 @@
                                     <li><a href="#/admin/restaurateurs" translate>Restaurateurs</a></li>
                                 </ul>
                             </li>
+							
+
                         </ul>
 						
+						
                         <ul class="nav navbar-nav navbar-right" ng-cloak>
+							
+							<li ng-class="{'active':currentMenu=='cart'}">
+								<a href="#/cart">
+									<i class="glyphicon glyphicon-shopping-cart"></i>
+								</a>
+							</li>
+							
                             <li class="dropdown" ng-show="currentUser">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentUser.firstname}} {{currentUser.lastname}} <i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#/orders" class="clickable" translate>Mes commandes</a></li>
                                     <li><a href="#/settings" class="clickable" translate>Paramètres</a></li>
                                     <li><a ng-click="logout()" class="clickable" translate>Deconnexion</a></li>
                                 </ul>
                             </li>
+							
                             <li>
                                 <a ng-click="signup()" class="clickable" ng-show="!currentUser" translate>Inscription</a>
                             </li>
-
+							
                             <li class="dropdown" ng-show="!currentUser" id="signInDropdown">
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown"><span translate>Connexion</span> <strong class="caret"></strong></a>
                                 <div class="dropdown-menu" style="padding: 15px;">
@@ -132,6 +144,9 @@
     <script src="js/controllers/home.js"></script>
     <script src="js/controllers/about.js"></script>
 
+    <script src="js/controllers/cart/index.js"></script>
+	<script src="js/controllers/orders/index.js"></script>
+	
     <script src="js/controllers/users/signup.js"></script>
     <script src="js/controllers/users/setting.js"></script>
     <script src="js/controllers/users/delete.js"></script>

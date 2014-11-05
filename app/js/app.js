@@ -22,6 +22,17 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 		// Check if a user is connected from the cookies
 		$rootScope.currentUser = $cookieStore.get("currentuser");
 
+		// Init cart
+		$rootScope.cart = $cookieStore.get("cart")
+		if($rootScope.cart == undefined) {
+			$rootScope.cart = {	restaurant_id: null,
+								lines_order: [] };
+		}
+		
+		/**
+		 * {restaurant_id: id, lines_order: [{dish_id: id, quantity: val}, ...]}
+		 *
+		 */
 		// Set language
         if($rootScope.currentUser) {
             $rootScope.currentLanguage = $rootScope.currentUser.language;

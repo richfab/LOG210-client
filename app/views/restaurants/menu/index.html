@@ -24,8 +24,12 @@
             <div class="col col-xs-3" translate>{{dish.name}}</div>
             <div class="col col-xs-6" translate>{{dish.description}}</div>
             <div class="col col-xs-1" translate>{{dish.price}}</div>
-            <div class="col col-xs-1" translate><input type="number" class="form-control"></div>
-            <div class="col col-xs-1" translate><button class="btn btn-default">Ajouter</button></div>
+            <div class="col col-xs-1" translate>
+				<input type="number" ng-model="quantity" class="form-control">
+			</div>
+            <div class="col col-xs-1" translate>
+				<button class="btn btn-default" ng-click="addCart(dish, quantity)">Ajouter</button>
+			</div>
         </div>
     </div>
 
