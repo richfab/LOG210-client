@@ -27,21 +27,33 @@ myApp.controller('MenuRestaurantListCtrl', ['$scope', '$routeParams', '$rootScop
 				$scope.notifyMessage(result.data, "danger");
 			});
 		};
+		$scope.updateList();
 		
 		// Add to cart
 		$scope.addCart = function(dish, quantity) {
+
+			// Check if there are already a cart with dish from other restaurant
 			if ($rootScope.cart['restaurant_id'] == $routeParams.restaurantId || $rootScope.cart['restaurant_id'] == null) {
-				if(quantity > 0) {
+				
+				// Check if dish_id already exist in the cart and update quantity if exist
+				var dishFinded = false;
+				$rootScope.cart.lines_order.forEach(function (lo) {
+					if(dish.id == lo.dish_id) {
+						lo.quantity += quantity;
+						dishFinded = true;
+					}
+				})
+				// Else add new dish_id with quantity
+				if(!dishFinded)
 					$rootScope.cart.lines_order.push({dish_id: dish.id, quantity: quantity});
-					$scope.notifyMessage(dish.name + " a bien été ajouter au panier (Quantité: " + quantity + ")", "success");
-					$cookieStore.put("cart", $rootScope.cart);
-				}			
+				
+				// Update cookie
+				$cookieStore.put("cart", $rootScope.cart);
+				
+				$scope.notifyMessage(dish.name + " a bien été ajouter au panier (Quantité: " + quantity + ")", "success");		
 			} else {
 				$scope.notifyMessage("Vous ne pouvez pas commander depuis plusieurs restaurants. Veuillez d'abord vider votre panier.", "danger");
 			}
 		}
-
-		$scope.updateList();
-		
 
 	}]);

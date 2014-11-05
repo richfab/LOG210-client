@@ -25,10 +25,10 @@
             <div class="col col-xs-6" translate>{{dish.description}}</div>
             <div class="col col-xs-1" translate>{{dish.price}}</div>
             <div class="col col-xs-1" translate>
-				<input type="number" ng-model="quantity" class="form-control">
+				<input type="number" min="0" ng-model="quantity" class="form-control">
 			</div>
             <div class="col col-xs-1" translate>
-				<button class="btn btn-default" ng-click="addCart(dish, quantity)">Ajouter</button>
+				<button class="btn btn-default" ng-click="addCart(dish, quantity)" ng-disabled="quantity==0">Ajouter</button>
 			</div>
         </div>
     </div>
