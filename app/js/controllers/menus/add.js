@@ -35,15 +35,13 @@ myApp.controller('MenuAddCtrl', ['$rootScope', '$scope', '$q', '$modalInstance',
                     var deferred = $q.defer();
 
                     dish.menu_id = result.id;
-					dish.price = parseFloat(dish.price);
-                    
-                    if (!dish.description || dish.description === "") {
-                        $scope.dataAlert = {
-                            message: "Un plat a été ajouté sans description",
-                            type: 'danger'
-                        };
+                    dish.price = parseFloat(dish.price);
+                    if(!dish.description) dish.description = "";
+
+                    if (dish.description === "") {
+                        $scope.notifyMessage("Un plat a été ajouté sans description", "danger");
                     }
-                    
+
                     Restangular.all('dishes').post(dish).then(function (result) {
                         deferred.resolve(result);
                     }, function (result) {
@@ -56,7 +54,7 @@ myApp.controller('MenuAddCtrl', ['$rootScope', '$scope', '$q', '$modalInstance',
 
                     promises.push(deferred.promise);
                 });
-                
+
                 $q.all(promises).then(function (result) {
                     $modalInstance.close(result);
                 });
@@ -69,7 +67,7 @@ myApp.controller('MenuAddCtrl', ['$rootScope', '$scope', '$q', '$modalInstance',
             });
         };
         
-        // Cancel restaurant adding
+        // Cancel menu adding
         $scope.cancel = function () {
             $modalInstance.close();
         };
