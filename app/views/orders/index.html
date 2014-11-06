@@ -15,7 +15,7 @@
         <div class="row clickable" ng-click="isNotCollapsed = !isNotCollapsed">
             <div class="col col-xs-2" >{{order.number}}</div>
             <div class="col col-xs-4" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
-            <div class="col col-xs-4" >{{order.date | date:"MM/dd/yyyy hh:mm"}}</div>
+            <div class="col col-xs-4" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
             <div class="col col-xs-1" >{{order.state.name}}</div>
             <div class="col col-xs-1" ><span class="glyphicon" ng-class="(isNotCollapsed) ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span></div>
         </div>

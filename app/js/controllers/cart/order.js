@@ -14,6 +14,7 @@ myApp.controller('OrderValidateCtrl', ['$rootScope', '$scope', '$modalInstance',
             
             $scope.order.date.setHours($scope.order.date.hours);
             $scope.order.date.setMinutes($scope.order.date.minutes);
+            console.log($scope.order);
 
 			$rootScope.cart.lines_order.forEach(function (lineOrder) {
 				$scope.order.dishes.push({dish_id: lineOrder.dish_id, quantity: lineOrder.quantity});
