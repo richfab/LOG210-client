@@ -1,5 +1,21 @@
 <div class="container">
 
-	<h1 translate>ORDERS PAGE</h1>
+    <nav class="navbar navbar-default">
+        <div class="navbar-brand" style="width: 100%" translate>Mes commandes</div>
+    </nav>
+
+    <div class="row" style="font-weight:bold; border-bottom:solid 1px black;padding-bottom:10px;margin-bottom:10px">
+        <div class="col col-xs-2" translate>#</div>
+        <div class="col col-xs-4" translate>Date de commande</div>
+        <div class="col col-xs-4" translate>Date de livraison</div>
+        <div class="col col-xs-2" translate>Status</div>
+    </div>
+
+    <div class="row" ng-repeat="order in orders">
+        <div class="col col-xs-2" translate>{{order.number}}</div>
+        <div class="col col-xs-4" translate>{{order.date}}</div>
+        <div class="col col-xs-4" translate>{{order.created}}</div>
+        <div class="col col-xs-2" translate>{{order.status}}</div>
+    </div>
 
 </div>
