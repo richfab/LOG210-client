@@ -20,6 +20,15 @@
 			</div>
 		</div>
 
+		<div class="control-group">
+            <label class="control-label"><span translate>Adresse de livraison</span></label>
+			<div class="controls">
+				<p class="input-group">
+					<select ng-options="a.id as a.address + ', ' + a.zipcode + ', ' + a.city for a in addresses" ng-model="orderAddress"></select>
+				</p>
+			</div>
+		</div>
+
 	</div>
 
 	<div class="modal-footer">

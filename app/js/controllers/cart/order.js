@@ -9,6 +9,11 @@ myApp.controller('OrderValidateCtrl', ['$rootScope', '$scope', '$modalInstance',
 		// Order
 		$scope.order = {dishes: []};
 		
+		// Get addresse for client
+		Restangular.all('addresses?personne_id=' + $rootScope.currentUser.id).getList().then(function (result) {
+			$scope.addresses = result;
+		});
+		
 		// Save restaurant
         $scope.save = function () {
 
