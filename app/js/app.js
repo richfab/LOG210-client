@@ -23,14 +23,20 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 		$rootScope.currentUser = $cookieStore.get("currentuser");
 
 		// Init cart
-		function initCart() {
+		$rootScope.initCart = function() {
 			$rootScope.cart = $cookieStore.get("cart")
 			if($rootScope.cart == undefined) {
 				$rootScope.cart = {	restaurant_id: null,
 									lines_order: [] };
 			}
 		}
-		initCart();
+		
+		$rootScope.resetCart = function() {
+			$rootScope.cart = {	restaurant_id: null,
+								lines_order: [] };
+		}
+		
+		$rootScope.initCart();
 		
 		/**
 		 * {restaurant_id: id, lines_order: [{dish_id: id, quantity: val}, ...]}
@@ -98,7 +104,7 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 				gettextCatalog.setCurrentLanguage($rootScope.currentLanguage);
 
 				$rootScope.notifyMessage("Connexion effectuée.", "info");
-				initCart();
+				$rootScope.initCart();
 	        }, function (result) {
                 $rootScope.notifyMessage(result.data, "danger");
 	        });

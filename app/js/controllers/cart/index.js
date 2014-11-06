@@ -3,8 +3,8 @@
 
 'use strict';
 
-myApp.controller('CartViewCtrl', ['$rootScope', '$scope', 'Restangular', '$cookieStore', '$modal',
-    function ($rootScope, $scope, Restangular, $cookieStore, $modal) {
+myApp.controller('CartViewCtrl', ['$rootScope', '$scope', 'Restangular', '$cookieStore', '$modal', '$location',
+    function ($rootScope, $scope, Restangular, $cookieStore, $modal, $location) {
 		$rootScope.currentMenu = 'cart';
 
 		$scope.total = 0;
@@ -31,6 +31,8 @@ myApp.controller('CartViewCtrl', ['$rootScope', '$scope', 'Restangular', '$cooki
 				templateUrl: 'views/cart/order.html',
 				controller: 'OrderValidateCtrl'
 			}).result.then(function (result) {
+				$scope.notifyMessage("Votre commande a bien été prise en compte.", "success");
+				$rootScope.resetCart();
 				$location.path("/orders");
 			});
 		}
