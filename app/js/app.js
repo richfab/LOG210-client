@@ -9,8 +9,7 @@ var myApp = angular.module('myApp', [
 	'restangular',
 	'ui.bootstrap',
 	'ngCookies',
-	'gettext',
-    'myAppFilters'
+	'gettext'
 ]);
 
 // Run when application is launched
