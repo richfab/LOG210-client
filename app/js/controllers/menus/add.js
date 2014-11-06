@@ -6,13 +6,23 @@
 myApp.controller('MenuAddCtrl', ['$rootScope', '$scope', '$q', '$modalInstance', 'Restangular',
     function ($rootScope, $scope, $q, $modalInstance, Restangular) {
         
-        $scope.menu = {dishes : []};
+        $scope.menu = {dishes : [{}]};
         
         $scope.addDish = function () {
             $scope.menu.dishes.push({});
         };
         
         $scope.removeDish = function (dish) {
+            
+            // Cannot have 0 dish
+            if($scope.menu.dishes.length <= 1){
+                $scope.dataAlert = {
+                    message: "Le menu doit comporter au moins un plat",
+                    type: 'danger'
+                };
+                return;
+            }
+            
             var index = $scope.menu.dishes.indexOf(dish);
             if (index > -1) {
                 $scope.menu.dishes.splice(index, 1);
