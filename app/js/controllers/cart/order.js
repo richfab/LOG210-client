@@ -18,7 +18,7 @@ myApp.controller('OrderValidateCtrl', ['$rootScope', '$scope', '$modalInstance',
 
 			// Request server to add new restaurant
             Restangular.all('orders').post($scope.order).then(function (result) {
-                $modalInstance.close(result);
+                $modalInstance.close("ok");
             }, function (result) {
                 $scope.dataAlert = {
                     message: result.data,

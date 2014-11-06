@@ -31,9 +31,11 @@ myApp.controller('CartViewCtrl', ['$rootScope', '$scope', 'Restangular', '$cooki
 				templateUrl: 'views/cart/order.html',
 				controller: 'OrderValidateCtrl'
 			}).result.then(function (result) {
-				$scope.notifyMessage("Votre commande a bien été prise en compte.", "success");
-				$rootScope.resetCart();
-				$location.path("/orders");
+				if (result == "ok") {
+					$scope.notifyMessage("Votre commande a bien été prise en compte.", "success");
+					$rootScope.resetCart();
+					$location.path("/orders");
+				}
 			});
 		}
 		
