@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h3 class="modal-title"><span translate>Commande</span></h3>
+</div>
+
+<form name="orderForm">
+	
+	<div class="modal-body">
+
+		<alert-message alert-data="dataAlert"></alert-message>
+
+		<div class="control-group">
+            <label class="control-label"><span translate>Date de livraison souhaité</span></label>
+			<div class="controls">
+				<p class="input-group">
+					<input type="text" class="form-control" ng-click="open($event)" datepicker-popup="dd.MM.yyyy" ng-model="order.date" is-open="$parent.opened" datepicker-options="dateOptions" close-text="Fermer"/>
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					</span>
+				</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="save()" ng-disabled="restaurantForm.$invalid" translate>Valider</button>
+		<button class="btn btn-default" ng-click="cancel()" translate>Annuler</button>
+	</div>
+
+</form>
