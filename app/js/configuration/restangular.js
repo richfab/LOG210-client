@@ -17,7 +17,7 @@ myApp.config(function (RestangularProvider) {
                     if (key.match(/date/g)) {
                         try {
                             if (object[key] != null) {
-								object[key] = new Date(object[key].substr(0, 10));
+								object[key] = new Date(object[key]);
 							}
                         } catch (e) {
                             // Nothing here, if it can't do converting, it don't do converting
