@@ -24,7 +24,7 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 
 		// Init cart
 		$rootScope.initCart = function() {
-			$rootScope.cart = $cookieStore.get("cart")
+			$rootScope.cart = $cookieStore.get("cart");
 			if($rootScope.cart == undefined) {
 				$rootScope.cart = {	restaurant_id: null,
 									lines_order: [] };
@@ -32,6 +32,7 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 		}
 		
 		$rootScope.resetCart = function() {
+            $cookieStore.remove("cart");
 			$rootScope.cart = {	restaurant_id: null,
 								lines_order: [] };
 		}

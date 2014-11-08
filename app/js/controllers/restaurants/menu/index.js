@@ -35,6 +35,9 @@ myApp.controller('MenuRestaurantListCtrl', ['$scope', '$routeParams', '$rootScop
 			// Check if there are already a cart with dish from other restaurant
 			if ($rootScope.cart['restaurant_id'] == $routeParams.restaurantId || $rootScope.cart['restaurant_id'] == null) {
 				
+                // Set restaurant_id
+                $rootScope.cart.restaurant_id = $routeParams.restaurantId;
+
 				// Check if dish_id already exist in the cart and update quantity if exist
 				var dishFinded = false;
 				$rootScope.cart.lines_order.forEach(function (lo) {

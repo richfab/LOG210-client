@@ -17,17 +17,17 @@
             <div class="col col-xs-3" translate>Plat</div>
             <div class="col col-xs-6" translate>Description</div>
             <div class="col col-xs-1" translate>Prix</div>
-            <div class="col col-xs-1" translate>Quantité</div>
+            <div class="col col-xs-1" ng-show="currentUser.type=='client'" translate>Quantité</div>
         </div>
 
         <div class="row" ng-repeat="dish in menu.dishes">
             <div class="col col-xs-3" translate>{{dish.name}}</div>
             <div class="col col-xs-6" translate>{{dish.description}}</div>
             <div class="col col-xs-1" translate>{{dish.price}}</div>
-            <div class="col col-xs-1" translate>
+            <div class="col col-xs-1" ng-show="currentUser.type=='client'" translate>
 				<input type="number" min="0" ng-model="quantity" class="form-control">
 			</div>
-            <div class="col col-xs-1" translate>
+            <div class="col col-xs-1" ng-show="currentUser.type=='client'" translate>
 				<button class="btn btn-default" ng-click="addCart(dish, quantity)" ng-disabled="quantity==0">Ajouter</button>
 			</div>
         </div>
