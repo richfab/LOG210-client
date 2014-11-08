@@ -40,7 +40,7 @@ myApp.controller('OrderValidateCtrl', ['$rootScope', '$scope', '$modalInstance',
             $scope.newAddress.personne_id = $rootScope.currentUser.id;
             Restangular.all('addresses').post($scope.newAddress).then(function (result) {
                 $scope.addresses.push(result);
-                $scope.orderAddress = result.id;
+                $scope.order.address_id = result.id;
                 $scope.formAddress = false;
             }, function (result) {
                 $scope.dataAlert = {

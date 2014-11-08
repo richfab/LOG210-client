@@ -44,6 +44,7 @@
 							
 							<!-- MENU RESTAURATEUR -->
 							<li ng-class="{'active':currentMenu=='my_menus'}" ng-show="currentUser.type=='restaurateur' && currentUser.restaurant_id != null"><a href="#/menus" translate>Mes menus</a></li>
+                            <li ng-class="{'active':currentMenu=='my_orders'}" ng-show="currentUser.type=='restaurateur' && currentUser.restaurant_id != null"><a href="#/my_orders" translate>Commandes</a></li>
 
 							<!-- MENU ADMIN -->
 							<li class="dropdown" ng-show="currentUser.type=='entrepreneur'" ng-cloak>
@@ -148,6 +149,7 @@
     <script src="js/controllers/cart/order.js"></script>
 	
 	<script src="js/controllers/orders/index.js"></script>
+	<script src="js/controllers/orders/index_restaurateur.js"></script>
 	
     <script src="js/controllers/users/signup.js"></script>
     <script src="js/controllers/users/setting.js"></script>

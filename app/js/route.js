@@ -59,6 +59,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'views/orders/index.html',
         controller: 'OrderViewCtrl'
     });
+    
+    $routeProvider.when('/my_orders', {
+        templateUrl: 'views/orders/index_restaurateur.html',
+        controller: 'OrderRestaurateurViewCtrl'
+    });
 
 	$routeProvider.otherwise({redirectTo: '/home'});
 
