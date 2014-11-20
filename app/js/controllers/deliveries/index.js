@@ -3,8 +3,8 @@
 
 'use strict';
 
-myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular',
-    function ($rootScope, $scope, Restangular) {
+myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$modal',
+    function ($rootScope, $scope, Restangular, $modal) {
 
         $rootScope.currentMenu = 'deliveries';
 
@@ -17,5 +17,22 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular',
         };
 
         $scope.updateList();
+        
+        $scope.show_directions = function () {
+            
+            $scope.order = {from: '6548 rue de Normanville, Montreal CA',
+                           to: '3010 avenue Van horne, Montreal CA',
+                           id: 1245}
+            
+            $modal.open({
+                templateUrl: 'views/deliveries/directions.html',
+                controller: 'DeliveryDirectionsCtrl',
+                resolve: {
+                order: function () {
+                        return Restangular.copy(order);
+                    }
+                }
+			});
+        };
 
 	}]);
