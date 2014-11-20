@@ -4,9 +4,11 @@
 <div class="modal-body">
 
     <alert-message alert-data="dataAlert"></alert-message>
-    <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+
+    <g-map-direction from="order.from" to="order.to"></g-map-direction>
 
     <div class="modal-footer">
+        <button class="btn btn-default" ng-click="initialize()" translate>Initialize</button>
         <button class="btn btn-default" ng-click="cancel()" translate>Fermer</button>
     </div>
 </div>
