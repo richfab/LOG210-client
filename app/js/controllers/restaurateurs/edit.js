@@ -31,6 +31,7 @@ myApp.controller('RestaurateurEditCtrl', ['$scope', '$modalInstance', 'Restangul
 
 		// Save restaurateur
 		$scope.save = function () {
+            if($scope.restaurateur.restaurant_id == null) $scope.restaurateur.restaurant_id = 'no_restaurant';
             Restangular.one('restaurateurs', $scope.restaurateur.id).put($scope.restaurateur).then(function (result) {
                 $modalInstance.close(result);
             }, function (result) {
