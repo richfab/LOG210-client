@@ -20,4 +20,22 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
 
         $scope.updateList();
 
+
+        $scope.show_directions = function (googleMap) {
+
+            var order = {from: '6548 rue de Normanville, Montreal CA',
+                           to: '3010 avenue Van horne, Montreal CA',
+                           id: 1245}
+
+            $modal.open({
+                templateUrl: 'views/deliveries/directions.html',
+                controller: 'DeliveryDirectionsCtrl',
+                resolve: {
+                    order: function () {
+                        return Restangular.copy(order);
+                    }
+                }
+            });
+        };
+
 	}]);
