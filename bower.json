@@ -12,8 +12,5 @@
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
     "angular-gettext": "~1.1.3"
-  },
-  "devDependencies": {
-    "angular-google-maps": "~2.0.9"
   }
 }

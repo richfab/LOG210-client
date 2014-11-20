@@ -3,8 +3,8 @@
 
 'use strict';
 
-myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$modal', 'uiGmapGoogleMapApi',
-    function ($rootScope, $scope, Restangular, $modal, uiGmapGoogleMapApi) {
+myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$modal',
+    function ($rootScope, $scope, Restangular, $modal) {
 
         $rootScope.currentMenu = 'deliveries';
         $scope.googleAPIisReady = false;
@@ -18,13 +18,6 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
         };
 
         $scope.updateList();
-        $scope.googleMap = {}; // this is filled when google map is initiated
-        
-        // The "then" callback function provides the google.maps object.
-        uiGmapGoogleMapApi.then(function(maps) {
-            console.log('is reday');
-            $scope.googleAPIisReady = true;
-        });
         
         $scope.show_directions = function (googleMap) {
             
@@ -38,8 +31,7 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
                 resolve: {
                 order: function () {
                         return Restangular.copy(order);
-                    },
-                    googleMap: googleMap
+                    }
                 }
             });
         };
