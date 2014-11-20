@@ -9,8 +9,7 @@ var myApp = angular.module('myApp', [
 	'restangular',
 	'ui.bootstrap',
 	'ngCookies',
-	'gettext',
-    'uiGmapgoogle-maps'
+	'gettext'
 ]);
 
 // Run when application is launched
@@ -31,15 +30,15 @@ myApp.run(['$rootScope', '$modal', '$http', '$cookieStore', "$location", "gettex
 									lines_order: [] };
 			}
 		}
-		
+
 		$rootScope.resetCart = function() {
             $cookieStore.remove("cart");
 			$rootScope.cart = {	restaurant_id: null,
 								lines_order: [] };
 		}
-		
+
 		$rootScope.initCart();
-		
+
 		/**
 		 * {restaurant_id: id, lines_order: [{dish_id: id, quantity: val}, ...]}
 		 *
