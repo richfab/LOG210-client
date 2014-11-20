@@ -14,7 +14,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		templateUrl: 'views/restaurants/index_user.html',
 		controller: 'RestaurantListUserCtrl'
 	});
-	
+
 	$routeProvider.when('/restaurants/:restaurantId/menus', {
 		templateUrl: 'views/restaurants/menu/index.html',
 		controller: 'MenuRestaurantListCtrl'
@@ -29,7 +29,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		templateUrl: 'views/restaurateurs/index.html',
 		controller: 'RestaurateurListCtrl'
 	});
-	
+
 	$routeProvider.when('/menus', {
 		templateUrl: 'views/menus/index.html',
 		controller: 'MenuListCtrl'
@@ -44,25 +44,30 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 		templateUrl: 'views/contact.html',
 		controller: 'ContactViewCtrl'
 	});
-    
+
     $routeProvider.when('/settings', {
         templateUrl: 'views/setting.html',
         controller: 'EditProfilCtrl'
     });
-	
+
     $routeProvider.when('/cart', {
         templateUrl: 'views/cart/index.html',
         controller: 'CartViewCtrl'
     });
-	
+
     $routeProvider.when('/orders', {
         templateUrl: 'views/orders/index.html',
         controller: 'OrderViewCtrl'
     });
-    
+
     $routeProvider.when('/my_orders', {
         templateUrl: 'views/orders/index_restaurateur.html',
         controller: 'OrderRestaurateurViewCtrl'
+    });
+
+    $routeProvider.when('/deliveries', {
+        templateUrl: 'views/deliveries/index.html',
+        controller: 'DeliveryViewCtrl'
     });
 
 	$routeProvider.otherwise({redirectTo: '/home'});
