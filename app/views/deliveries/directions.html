@@ -4,6 +4,7 @@
 <div class="modal-body">
 
     <alert-message alert-data="dataAlert"></alert-message>
+    <p>Adresse de départ : {{order.from}}</p>
     <p>Adresse de livraison : {{order.to}}</p>
     <g-map-direction from="order.from" to="order.to"></g-map-direction>
 

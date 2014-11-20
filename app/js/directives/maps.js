@@ -11,12 +11,11 @@ angular.module('myApp').directive('gMapDirection', [function () {
             from: "=",
             to: "="
         },
-
         link: function (scope) {
 
             var directionsDisplay;
             var directionsService = new google.maps.DirectionsService();
-            var map = scope.googleMap;
+            var map;
 
             scope.initialize = function () {
                 directionsDisplay = new google.maps.DirectionsRenderer();

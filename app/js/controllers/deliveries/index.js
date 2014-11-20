@@ -18,6 +18,10 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
         };
 
         $scope.updateList();
+        
+        $scope.op = function () {
+            $modal.open();
+        }
 
         $scope.show_directions = function (order) {
 
