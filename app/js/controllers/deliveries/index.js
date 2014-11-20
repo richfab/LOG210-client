@@ -8,7 +8,6 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
     function ($rootScope, $scope, Restangular, $modal) {
 
         $rootScope.currentMenu = 'deliveries';
-        $scope.googleAPIisReady = false;
 
         $scope.updateList = function () {
             Restangular.all("orders?state=2").getList().then(function (data) {
@@ -20,12 +19,7 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
 
         $scope.updateList();
 
-
-        $scope.show_directions = function (googleMap) {
-
-            var order = {from: '6548 rue de Normanville, Montreal CA',
-                           to: '3010 avenue Van horne, Montreal CA',
-                           id: 1245}
+        $scope.show_directions = function (order) {
 
             $modal.open({
                 templateUrl: 'views/deliveries/directions.html',

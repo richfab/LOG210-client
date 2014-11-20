@@ -3,24 +3,27 @@
     <nav class="navbar navbar-default">
         <div class="navbar-brand" style="width: 100%" translate>Livraisons</div>
     </nav>
-    <button ng-click="show_directions()">ROUTE</button>
+    
     <div class="row" style="font-weight:bold">
         <div class="col col-xs-1" translate>#</div>
-        <div class="col col-xs-3" translate>Date de commande</div>
-        <div class="col col-xs-3" translate>Date de livraison</div>
-        <div class="col col-xs-3" translate>Adresse de livraison</div>
+        <div class="col col-xs-2" translate>Date de commande</div>
+        <div class="col col-xs-2" translate>Date de livraison</div>
+        <div class="col col-xs-4" translate>Adresse de livraison</div>
         <div class="col col-xs-1" translate>Status</div>
+        <div class="col col-xs-1"></div>
+        <div class="col col-xs-1"></div>
     </div>
     <div style="font-weight:bold; border-bottom:solid 2px #DDD;padding-bottom:10px;margin-bottom:10px">
     </div>
     <div ng-repeat="order in orders">
-        <div class="row clickable" ng-click="isNotCollapsed = !isNotCollapsed">
+        <div class="row">
             <div class="col col-xs-1" >{{order.number}}</div>
-            <div class="col col-xs-3" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
-            <div class="col col-xs-3" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
-			<div class="col col-xs-3">{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
+            <div class="col col-xs-2" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
+            <div class="col col-xs-2" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
+			<div class="col col-xs-4">{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
             <div class="col col-xs-1" >{{order.state.name}}</div>
-            <div class="col col-xs-1" ><span class="glyphicon" ng-class="(isNotCollapsed) ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span></div>
+            <div class="col col-xs-1 clickable"  ng-click="isNotCollapsed = !isNotCollapsed"><span class="glyphicon" ng-class="(isNotCollapsed) ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span></div>
+            <div class="col col-xs-1" ><button class="btn btn-default" ng-click="show_directions(order)" translate>Itinéraire</button></div>
         </div>
 
         <div collapse="!isNotCollapsed">

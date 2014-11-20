@@ -20,10 +20,10 @@ angular.module('myApp').directive('gMapDirection', [function () {
 
             scope.initialize = function () {
                 directionsDisplay = new google.maps.DirectionsRenderer();
-                var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+                var montreal = new google.maps.LatLng(45.522633, -73.555185);
                 var mapOptions = {
                     zoom:7,
-                    center: chicago
+                    center: montreal
                 }
                 map = new google.maps.Map(document.getElementById("maps-canvas"), mapOptions);
                 directionsDisplay.setMap(map);
