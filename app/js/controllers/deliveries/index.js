@@ -9,7 +9,7 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
         $rootScope.currentMenu = 'deliveries';
 
         $scope.updateList = function () {
-            Restangular.all("orders?client_id="+$rootScope.currentUser.id).getList().then(function (data) {
+            Restangular.all("orders?state=2").getList().then(function (data) {
                 $scope.orders = data;
             }, function (result) {
                 $scope.notifyMessage(result.data, "danger");
