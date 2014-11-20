@@ -3,10 +3,11 @@
 
 'use strict';
 
-myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$modal',
-    function ($rootScope, $scope, Restangular, $modal) {
+myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$modal', 'uiGmapGoogleMapApi',
+    function ($rootScope, $scope, Restangular, $modal, uiGmapGoogleMapApi) {
 
         $rootScope.currentMenu = 'deliveries';
+        $scope.googleAPIisReady = false;
 
         $scope.updateList = function () {
             Restangular.all("orders?state=2").getList().then(function (data) {
@@ -17,10 +18,17 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
         };
 
         $scope.updateList();
+        $scope.googleMap = {}; // this is filled when google map is initiated
         
-        $scope.show_directions = function () {
+        // The "then" callback function provides the google.maps object.
+        uiGmapGoogleMapApi.then(function(maps) {
+            console.log('is reday');
+            $scope.googleAPIisReady = true;
+        });
+        
+        $scope.show_directions = function (googleMap) {
             
-            $scope.order = {from: '6548 rue de Normanville, Montreal CA',
+            var order = {from: '6548 rue de Normanville, Montreal CA',
                            to: '3010 avenue Van horne, Montreal CA',
                            id: 1245}
             
@@ -30,9 +38,10 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
                 resolve: {
                 order: function () {
                         return Restangular.copy(order);
-                    }
+                    },
+                    googleMap: googleMap
                 }
-			});
+            });
         };
 
 	}]);
