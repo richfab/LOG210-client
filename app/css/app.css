@@ -86,3 +86,7 @@ html, body {
 .dish-form {
     padding-top: 0px;
 }
+
+.angular-google-map-container {
+    height: 400px; 
+}

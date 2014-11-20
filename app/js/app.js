@@ -9,7 +9,8 @@ var myApp = angular.module('myApp', [
 	'restangular',
 	'ui.bootstrap',
 	'ngCookies',
-	'gettext'
+	'gettext',
+    'uiGmapgoogle-maps'
 ]);
 
 // Run when application is launched
