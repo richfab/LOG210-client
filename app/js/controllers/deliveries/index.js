@@ -51,6 +51,10 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
                         return Restangular.copy(order);
                     }
                 }
+            }).result.then(function (result) {
+                $scope.updateListReady();
+                $scope.updateListInDelivery();
+                $scope.updateListDelivered();
             });
         };
 
@@ -58,7 +62,9 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
     		// Request server to update order state
             order.state_id = 5;
             Restangular.one('orders', order.id).put(order).then(function (result) {
-                $modalInstance.close(result);
+                $scope.updateListReady();
+                $scope.updateListInDelivery();
+                $scope.updateListDelivered();
             }, function (result) {
                 $scope.dataAlert = {
                     message: result.data,
