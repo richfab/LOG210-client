@@ -3,48 +3,145 @@
     <nav class="navbar navbar-default">
         <div class="navbar-brand" style="width: 100%" translate>Livraisons</div>
     </nav>
-    
-    <div class="row" style="font-weight:bold">
-        <div class="col col-xs-1" translate>#</div>
-        <div class="col col-xs-2" translate>Date de commande</div>
-        <div class="col col-xs-2" translate>Date de livraison</div>
-        <div class="col col-xs-3" translate>Adresse de livraison</div>
-        <div class="col col-xs-1" translate>Status</div>
-        <div class="col col-xs-1"></div>
-        <div class="col col-xs-2"></div>
-    </div>
-    <div style="font-weight:bold; border-bottom:solid 2px #DDD;padding-bottom:10px;margin-bottom:10px">
-    </div>
-    <div ng-repeat="order in orders">
-        <div class="row">
-            <div class="col col-xs-1" >{{order.number}}</div>
-            <div class="col col-xs-2" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
-            <div class="col col-xs-2" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
-			<div class="col col-xs-3">{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
-            <div class="col col-xs-1" >{{order.state.name}}</div>
-            <div class="col col-xs-1 clickable"  ng-click="isNotCollapsed = !isNotCollapsed"><span class="glyphicon" ng-class="(isNotCollapsed) ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span></div>
-            <div class="col col-xs-2" ><button class="btn btn-default" ng-click="show_directions(order)" translate>Itinéraire</button></div>
-        </div>
 
-        <div collapse="!isNotCollapsed">
-            <div style="font-weight:bold; border-bottom:dashed 1px #DDD;padding-bottom:10px;margin-bottom:10px"></div>
-            <div>
-                <div class="row" style="font-weight:bold;">
-                    <div class="col col-xs-3" translate>Nom</div>
-                    <div class="col col-xs-6" translate>Description</div>
-                    <div class="col col-xs-2" translate>Prix</div>
-                    <div class="col col-xs-1" translate>Quantité</div>
-                </div>
-                <div class="row" ng-repeat="lo in order.lines_orders">
-                    <div class="col col-xs-3" >{{lo.dish.name}}</div>
-                    <div class="col col-xs-6" >{{lo.dish.description}}</div>
-                    <div class="col col-xs-2" >{{lo.dish.price}}</div>
-                    <div class="col col-xs-1" >{{lo.quantity}}</div>
+    <!-- ORDERS READY -->
+    <div ng-show="ordersReady.length > 0">
+        <h2 translate>Commande prête</h2>
+        <div class="row" style="font-weight:bold">
+            <div class="col col-xs-1" translate>#</div>
+            <div class="col col-xs-2" translate>Date de commande</div>
+            <div class="col col-xs-2" translate>Date de livraison</div>
+            <div class="col col-xs-3" translate>Adresse de livraison</div>
+            <div class="col col-xs-1" translate>Status</div>
+            <div class="col col-xs-1"></div>
+            <div class="col col-xs-2"></div>
+        </div>
+        <div style="font-weight:bold; border-bottom:solid 2px #DDD;padding-bottom:10px;margin-bottom:10px">
+        </div>
+        <div ng-repeat="order in ordersReady">
+            <div class="row">
+                <div class="col col-xs-1" >{{order.number}}</div>
+                <div class="col col-xs-2" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
+                <div class="col col-xs-2" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
+    			<div class="col col-xs-3" >{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
+                <div class="col col-xs-1" >{{order.state.name}}</div>
+                <div class="col col-xs-1 clickable"  ng-click="isNotCollapsed = !isNotCollapsed"><span class="glyphicon" ng-class="(isNotCollapsed) ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span></div>
+                <div class="col col-xs-2" ><button class="btn btn-default" ng-click="show_directions(order)" translate>Itinéraire</button></div>
+            </div>
+
+            <div collapse="!isNotCollapsed">
+                <div style="font-weight:bold; border-bottom:dashed 1px #DDD;padding-bottom:10px;margin-bottom:10px"></div>
+                <div>
+                    <div class="row" style="font-weight:bold;">
+                        <div class="col col-xs-3" translate>Nom</div>
+                        <div class="col col-xs-6" translate>Description</div>
+                        <div class="col col-xs-2" translate>Prix</div>
+                        <div class="col col-xs-1" translate>Quantité</div>
+                    </div>
+                    <div class="row" ng-repeat="lo in order.lines_orders">
+                        <div class="col col-xs-3" >{{lo.dish.name}}</div>
+                        <div class="col col-xs-6" >{{lo.dish.description}}</div>
+                        <div class="col col-xs-2" >{{lo.dish.price}}</div>
+                        <div class="col col-xs-1" >{{lo.quantity}}</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div style="font-weight:bold; border-bottom:solid 1px #DDD;padding-bottom:10px;margin-bottom:10px"></div>
+            <div style="font-weight:bold; border-bottom:solid 1px #DDD;padding-bottom:10px;margin-bottom:10px"></div>
+        </div>
+    </div>
+
+    <!-- ORDERS IN DELIVERY -->
+    <div ng-show="ordersInDelivery.length > 0">
+        <h2 translate>Commande en cours de livraison</h2>
+        <div class="row" style="font-weight:bold">
+            <div class="col col-xs-1" translate>#</div>
+            <div class="col col-xs-2" translate>Date de commande</div>
+            <div class="col col-xs-2" translate>Date de livraison</div>
+            <div class="col col-xs-3" translate>Adresse de livraison</div>
+            <div class="col col-xs-1" translate>Status</div>
+            <div class="col col-xs-1"></div>
+            <div class="col col-xs-2"></div>
+        </div>
+        <div style="font-weight:bold; border-bottom:solid 2px #DDD;padding-bottom:10px;margin-bottom:10px">
+        </div>
+        <div ng-repeat="order in ordersInDelivery">
+            <div class="row">
+                <div class="col col-xs-1" >{{order.number}}</div>
+                <div class="col col-xs-2" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
+                <div class="col col-xs-2" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
+    			<div class="col col-xs-3" >{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
+                <div class="col col-xs-1" >{{order.state.name}}</div>
+                <div class="col col-xs-1 clickable"  ng-click="isNotCollapsed = !isNotCollapsed"><span class="glyphicon" ng-class="(isNotCollapsed) ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span></div>
+                <div class="col col-xs-2" ><button class="btn btn-default" ng-click="deliveryOrder(order)" translate>Déclarer livrée</button></div>
+            </div>
+
+            <div collapse="!isNotCollapsed">
+                <div style="font-weight:bold; border-bottom:dashed 1px #DDD;padding-bottom:10px;margin-bottom:10px"></div>
+                <div>
+                    <div class="row" style="font-weight:bold;">
+                        <div class="col col-xs-3" translate>Nom</div>
+                        <div class="col col-xs-6" translate>Description</div>
+                        <div class="col col-xs-2" translate>Prix</div>
+                        <div class="col col-xs-1" translate>Quantité</div>
+                    </div>
+                    <div class="row" ng-repeat="lo in order.lines_orders">
+                        <div class="col col-xs-3" >{{lo.dish.name}}</div>
+                        <div class="col col-xs-6" >{{lo.dish.description}}</div>
+                        <div class="col col-xs-2" >{{lo.dish.price}}</div>
+                        <div class="col col-xs-1" >{{lo.quantity}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="font-weight:bold; border-bottom:solid 1px #DDD;padding-bottom:10px;margin-bottom:10px"></div>
+        </div>
+    </div>
+
+    <!-- ORDERS DELIVERED -->
+    <div ng-show="ordersDelivered.length > 0">
+        <h2 translate>Commande livrée</h2>
+        <div class="row" style="font-weight:bold">
+            <div class="col col-xs-1" translate>#</div>
+            <div class="col col-xs-2" translate>Date de commande</div>
+            <div class="col col-xs-2" translate>Date de livraison</div>
+            <div class="col col-xs-3" translate>Adresse de livraison</div>
+            <div class="col col-xs-1" translate>Status</div>
+            <div class="col col-xs-1"></div>
+            <div class="col col-xs-2"></div>
+        </div>
+        <div style="font-weight:bold; border-bottom:solid 2px #DDD;padding-bottom:10px;margin-bottom:10px">
+        </div>
+        <div ng-repeat="order in ordersDelivered">
+            <div class="row">
+                <div class="col col-xs-1" >{{order.number}}</div>
+                <div class="col col-xs-2" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
+                <div class="col col-xs-2" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
+    			<div class="col col-xs-3" >{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
+                <div class="col col-xs-1" >{{order.state.name}}</div>
+                <div class="col col-xs-1 clickable"  ng-click="isNotCollapsed = !isNotCollapsed"><span class="glyphicon" ng-class="(isNotCollapsed) ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span></div>
+            </div>
+
+            <div collapse="!isNotCollapsed">
+                <div style="font-weight:bold; border-bottom:dashed 1px #DDD;padding-bottom:10px;margin-bottom:10px"></div>
+                <div>
+                    <div class="row" style="font-weight:bold;">
+                        <div class="col col-xs-3" translate>Nom</div>
+                        <div class="col col-xs-6" translate>Description</div>
+                        <div class="col col-xs-2" translate>Prix</div>
+                        <div class="col col-xs-1" translate>Quantité</div>
+                    </div>
+                    <div class="row" ng-repeat="lo in order.lines_orders">
+                        <div class="col col-xs-3" >{{lo.dish.name}}</div>
+                        <div class="col col-xs-6" >{{lo.dish.description}}</div>
+                        <div class="col col-xs-2" >{{lo.dish.price}}</div>
+                        <div class="col col-xs-1" >{{lo.quantity}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="font-weight:bold; border-bottom:solid 1px #DDD;padding-bottom:10px;margin-bottom:10px"></div>
+        </div>
     </div>
 
 </div>

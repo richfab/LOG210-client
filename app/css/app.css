@@ -88,5 +88,9 @@ html, body {
 }
 
 .angular-google-map-container {
-    height: 400px; 
+    height: 400px;
+}
+
+.ui-select-focusser.ui-select-offscreen.ng-scope {
+    display: none;
 }

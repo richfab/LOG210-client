@@ -6,7 +6,8 @@
 angular.module('myApp').directive('gMapDirection', [function () {
     return {
         restrict: 'E',
-        template:   '<div id="maps-canvas" style="height: 400px;"></div>',
+        template:   '<button class="btn btn-primary" ng-click="calcRoute()" ng-disabled="!from" style="width: 100%">Générer trajet</button>' +
+                    '<div id="maps-canvas" style="height: 400px;"></div>',
         scope: {
             from: "=",
             to: "="
@@ -26,7 +27,6 @@ angular.module('myApp').directive('gMapDirection', [function () {
                 }
                 map = new google.maps.Map(document.getElementById("maps-canvas"), mapOptions);
                 directionsDisplay.setMap(map);
-                scope.calcRoute();
             };
 
             scope.calcRoute = function () {

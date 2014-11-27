@@ -1,14 +1,32 @@
 <div class="modal-header">
     <h3 class="modal-title"><span translate>Trajet commande</span> '{{order.id}}'</h3>
 </div>
+
 <div class="modal-body">
 
     <alert-message alert-data="dataAlert"></alert-message>
-    <p>Adresse de départ : {{order.from}}</p>
+
+    <ui-select ng-model="address.selected"
+               theme="selectize"
+               reset-search-input="false">
+
+        <ui-select-match placeholder="Adresse de départ">
+            {{$select.selected.formatted_address}}
+        </ui-select-match>
+
+        <ui-select-choices repeat="address in addresses track by $index"
+                           refresh="refreshAddresses($select.search)"
+                           refresh-delay="0">
+            <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+        </ui-select-choices>
+    </ui-select>
+
     <p>Adresse de livraison : {{order.to}}</p>
-    <g-map-direction from="order.from" to="order.to"></g-map-direction>
+    <g-map-direction from="address.selected.formatted_address" to="order.to"></g-map-direction>
 
     <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="accept()" translate>Accepter</button>
         <button class="btn btn-default" ng-click="cancel()" translate>Fermer</button>
     </div>
+
 </div>

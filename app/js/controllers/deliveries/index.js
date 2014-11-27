@@ -9,16 +9,34 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
 
         $rootScope.currentMenu = 'deliveries';
 
-        $scope.updateList = function () {
+        $scope.updateListReady = function () {
             Restangular.all("orders?state=2").getList().then(function (data) {
-                $scope.orders = data;
+                $scope.ordersReady = data;
             }, function (result) {
                 $scope.notifyMessage(result.data, "danger");
             });
         };
 
-        $scope.updateList();
-        
+        $scope.updateListInDelivery = function () {
+            Restangular.all("orders?state=3").getList().then(function (data) {
+                $scope.ordersInDelivery = data;
+            }, function (result) {
+                $scope.notifyMessage(result.data, "danger");
+            });
+        };
+
+        $scope.updateListDelivered = function () {
+            Restangular.all("orders?state=4").getList().then(function (data) {
+                $scope.ordersDelivered = data;
+            }, function (result) {
+                $scope.notifyMessage(result.data, "danger");
+            });
+        };
+
+        $scope.updateListReady();
+        $scope.updateListInDelivery();
+        $scope.updateListDelivered();
+
         $scope.op = function () {
             $modal.open();
         }
@@ -35,5 +53,18 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
                 }
             });
         };
+
+        $scope.deliveryOrder = function (order) {
+    		// Request server to update order state
+            order.state_id = 5;
+            Restangular.one('orders', order.id).put(order).then(function (result) {
+                $modalInstance.close(result);
+            }, function (result) {
+                $scope.dataAlert = {
+                    message: result.data,
+                    type: 'danger'
+                };
+            });
+        }
 
 	}]);
