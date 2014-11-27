@@ -3,7 +3,7 @@
     <nav class="navbar navbar-default">
         <div class="navbar-brand" style="width: 100%" translate>Livraisons</div>
     </nav>
-    
+
     <p>Adresse de départ :</p>
     <ui-select ng-model="address.selected"
                theme="selectize"
@@ -36,7 +36,7 @@
         </div>
         <div ng-repeat="order in ordersReady">
             <div class="row">
-                <div class="col col-xs-1" >{{order.number}}</div>
+                <div class="col col-xs-1" >{{order.id}}</div>
                 <div class="col col-xs-2" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
                 <div class="col col-xs-2" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
     			<div class="col col-xs-3" >{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
@@ -83,7 +83,7 @@
         </div>
         <div ng-repeat="order in ordersInDelivery">
             <div class="row">
-                <div class="col col-xs-1" >{{order.number}}</div>
+                <div class="col col-xs-1" >{{order.id}}</div>
                 <div class="col col-xs-2" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
                 <div class="col col-xs-2" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
     			<div class="col col-xs-3" >{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
@@ -130,7 +130,7 @@
         </div>
         <div ng-repeat="order in ordersDelivered">
             <div class="row">
-                <div class="col col-xs-1" >{{order.number}}</div>
+                <div class="col col-xs-1" >{{order.id}}</div>
                 <div class="col col-xs-2" >{{order.created_date | date:"MM/dd/yyyy hh:mm"}}</div>
                 <div class="col col-xs-2" >{{order.date | date : "MM/dd/yyyy hh:mm"}}</div>
     			<div class="col col-xs-3" >{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
