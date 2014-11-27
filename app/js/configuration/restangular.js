@@ -3,6 +3,25 @@
 
 'use strict';
 
+function calcTime(date, offset) {
+    console.log("PASSAAge");
+    // create Date object for current location
+    d = date;
+
+    // convert to msec
+    // add local time zone offset
+    // get UTC time in msec
+    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+    // create new Date object for different city
+    // using supplied offset
+    nd = new Date(utc + (3600000*offset));
+
+    // return time as a string
+    return nd
+
+}
+
 // Configuration of Restangular
 myApp.config(function (RestangularProvider) {
 	RestangularProvider.setBaseUrl('http://localhost:5000');
@@ -17,7 +36,13 @@ myApp.config(function (RestangularProvider) {
                     if (key.match(/date/g)) {
                         try {
                             if (object[key] != null) {
-								object[key] = new Date(object[key].substr(0, 10));
+                                // console.log(object[key]);
+
+                                var hour = object[key].substr(11, 2);
+                                var min = object[key].substr(14, 2);
+                                // console.log(hour + ":" + min);
+                                object[key] = new Date(object[key].substr(0, 10) + "T" + hour + ":" + min);
+
 							}
                         } catch (e) {
                             // Nothing here, if it can't do converting, it don't do converting
