@@ -3,12 +3,12 @@
 
 'use strict';
 
-myApp.controller('DeliveryDirectionsCtrl', ['$scope', '$modalInstance', 'order', '$http', 'Restangular',
-function ($scope, $modalInstance, order, $http, Restangular) {
+myApp.controller('DeliveryDirectionsCtrl', ['$scope', '$modalInstance', 'order', 'Restangular',
+function ($scope, $modalInstance, order, Restangular) {
 
     // Get order
     $scope.order = order;
-    $scope.order.from = order.restaurant.address +  " " + order.restaurant.city + " " + order.restaurant.zipcode;
+    $scope.order.from = order.from;
     $scope.order.to = order.address.address + " " + order.address.city + " " + order.address.zipcode  + " " + order.address.country.name;
 
     // Cancel restaurant editing
@@ -28,19 +28,5 @@ function ($scope, $modalInstance, order, $http, Restangular) {
             };
         });
     }
-
-    // Method for ui-select
-    $scope.address = {};
-    $scope.refreshAddresses = function(address) {
-        var params = {
-            address: address,
-            sensor: false
-        };
-        return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
-            params: params
-        }).then(function(response) {
-            $scope.addresses = response.data.results;
-        });
-    };
 
 }]);

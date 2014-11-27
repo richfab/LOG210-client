@@ -4,8 +4,8 @@
 'use strict';
 
 
-myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$modal',
-    function ($rootScope, $scope, Restangular, $modal) {
+myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$modal', '$http',
+    function ($rootScope, $scope, Restangular, $modal, $http) {
 
         $rootScope.currentMenu = 'deliveries';
 
@@ -32,7 +32,21 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
                 $scope.notifyMessage(result.data, "danger");
             });
         };
-
+        
+        // Method for ui-select
+        $scope.address = {};
+        $scope.refreshAddresses = function(address) {
+            var params = {
+                address: address,
+                region: "ca"
+            };
+            return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+                params: params
+            }).then(function(response) {
+                $scope.addresses = response.data.results;
+            });
+        };
+        $scope.prout = false;
         $scope.updateListReady();
         $scope.updateListInDelivery();
         $scope.updateListDelivered();
@@ -42,6 +56,8 @@ myApp.controller('DeliveryViewCtrl', ['$rootScope', '$scope', 'Restangular', '$m
         }
 
         $scope.show_directions = function (order) {
+            
+            order.from = $scope.address.selected.formatted_address;
 
             $modal.open({
                 templateUrl: 'views/deliveries/directions.html',

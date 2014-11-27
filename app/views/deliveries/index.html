@@ -3,10 +3,26 @@
     <nav class="navbar navbar-default">
         <div class="navbar-brand" style="width: 100%" translate>Livraisons</div>
     </nav>
+    
+    <p>Adresse de départ :</p>
+    <ui-select ng-model="address.selected"
+               theme="selectize"
+               reset-search-input="false">
+
+        <ui-select-match placeholder="Saisir une adresse">
+            {{$select.selected.formatted_address}}
+        </ui-select-match>
+
+        <ui-select-choices repeat="address in addresses track by $index"
+                           refresh="refreshAddresses($select.search)"
+                           refresh-delay="0">
+            <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+        </ui-select-choices>
+    </ui-select>
 
     <!-- ORDERS READY -->
     <div ng-show="ordersReady.length > 0">
-        <h2 translate>Commande prête</h2>
+        <h2 translate>Commandes prêtes</h2>
         <div class="row" style="font-weight:bold">
             <div class="col col-xs-1" translate>#</div>
             <div class="col col-xs-2" translate>Date de commande</div>
@@ -26,7 +42,7 @@
     			<div class="col col-xs-3" >{{order.address.address}}<br>{{order.address.city}}, {{order.address.zipcode}}, {{order.address.country.name}}</div>
                 <div class="col col-xs-1" >{{order.state.name}}</div>
                 <div class="col col-xs-1 clickable"  ng-click="isNotCollapsed = !isNotCollapsed"><span class="glyphicon" ng-class="(isNotCollapsed) ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span></div>
-                <div class="col col-xs-2" ><button class="btn btn-default" ng-click="show_directions(order)" translate>Itinéraire</button></div>
+                <div class="col col-xs-2"><button class="btn btn-default" ng-click="show_directions(order)" ng-disabled="!address.selected.formatted_address" translate>Itinéraire</button></div>
             </div>
 
             <div collapse="!isNotCollapsed">
